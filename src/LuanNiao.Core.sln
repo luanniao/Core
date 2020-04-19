@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuanNiao.Core", "LuanNiao.Core\LuanNiao.Core.csproj", "{962E79CA-612C-4102-93B5-5142912E1384}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27941070-774C-4D55-81CA-C8863AF3E9B2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z.LuanNiao.Core.Test", "Z.LuanNiao.Core.Test\Z.LuanNiao.Core.Test.csproj", "{D228D3BA-B486-4F00-BC75-8152DB0568F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{962E79CA-612C-4102-93B5-5142912E1384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962E79CA-612C-4102-93B5-5142912E1384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962E79CA-612C-4102-93B5-5142912E1384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962E79CA-612C-4102-93B5-5142912E1384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D228D3BA-B486-4F00-BC75-8152DB0568F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D228D3BA-B486-4F00-BC75-8152DB0568F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D228D3BA-B486-4F00-BC75-8152DB0568F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D228D3BA-B486-4F00-BC75-8152DB0568F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80793745-7E58-459A-AB37-22FDFFFA2F6C}
+	EndGlobalSection
+EndGlobal

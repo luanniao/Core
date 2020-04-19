@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Z.LuanNiao.Core.Test
 {
     [TestFixture]
-    public class TUnionType
+    public class TUnionType3
     {
         private class TestClass
         {

@@ -10,7 +10,13 @@ namespace Z.LuanNiao.Core.Test
         public void Setup()
         {
         }
+        [Test]
+        public void TestNullDecide()
+        {
+            UnionType<int, string> _testInstance = 1;
 
+            Assert.IsFalse(_testInstance == null);
+        }
         [Test]
         public void TestSetValue()
         {

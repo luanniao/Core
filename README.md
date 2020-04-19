@@ -16,3 +16,4 @@ Like this:
   _testInstance = "";
   _testInstance = new TestClass();
 ```
+Detail demo you can find out in my Unit test project.[UTest](https://github.com/luanniao/Core/tree/master/src/Z.LuanNiao.Core.Test)

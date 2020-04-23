@@ -36,6 +36,10 @@ namespace LuanNiao.Core
 
         public UnionType<T1, T2, T3> Switch(Action<T1> action1, Action<T2> action2, Action<T3> action3)
         {
+            if (action1 == null || action2 == null || action3 == null)
+            {
+                throw new ArgumentNullException();
+            }
             switch (_whichOne)
             {
                 case 1:
@@ -67,6 +71,12 @@ namespace LuanNiao.Core
                     throw new ArgumentException();
             }
         }
+
+
+
+        public T1 V1() => _v1;
+        public T2 V2() => _v2;
+        public T3 V3() => _v3;
 
     }
 }

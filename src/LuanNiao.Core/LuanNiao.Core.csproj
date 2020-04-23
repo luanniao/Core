@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
     <Product>LuanNiao</Product>
@@ -13,9 +13,9 @@ You can see the detail info from the github page.</Description>
     <PackageProjectUrl>https://github.com/luanniao/Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/luanniao/Core</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>.netcore UnionType Blazor</PackageTags>
+    <PackageTags>.netcore UnionType Blazor LuanNiao</PackageTags>
     <PackageReleaseNotes>You can see the detail info from the github page.</PackageReleaseNotes>
-    <AssemblyVersion>0.0.3.200</AssemblyVersion>
+    <AssemblyVersion>0.0.4.200</AssemblyVersion>
     <FileVersion>0.0.3.200</FileVersion>
   </PropertyGroup>
 

@@ -20,8 +20,18 @@ namespace LuanNiao.Core
 
         public static bool operator !=(UnionType ut1, UnionType ut2)
         {
-            if (ReferenceEquals(null, ut1) || ReferenceEquals(null, ut2))
+            if (!ReferenceEquals(null, ut1) && ReferenceEquals(null, ut2))
+            {
+                return true;
+            }
+            else if (ReferenceEquals(null, ut1) && !ReferenceEquals(null, ut2))
+            {
+                return true;
+            }
+            else
+            {
                 return false;
+            }
             if (ut1.Value.GetType().IsValueType && ut2.Value.GetType().IsValueType)
             {
                 return ut1.Value.GetHashCode() != ut2.Value.GetHashCode();

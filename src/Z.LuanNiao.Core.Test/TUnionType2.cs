@@ -17,6 +17,14 @@ namespace Z.LuanNiao.Core.Test
 
             Assert.IsFalse(_testInstance == null);
         }
+
+        [Test]
+        public void TestNotNullDecide()
+        {
+            UnionType<int, string> _testInstance = 1;
+
+            Assert.IsTrue(_testInstance != null);
+        }
         [Test]
         public void TestSetValue()
         {

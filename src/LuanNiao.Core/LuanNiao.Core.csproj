@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>0.0.5</Version>
+    <Version>1.0.0</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
     <Product>LuanNiao</Product>
@@ -13,10 +13,11 @@ You can see the detail info from the github page.</Description>
     <PackageProjectUrl>https://github.com/luanniao/Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/luanniao/Core</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
-    <PackageTags>.netcore UnionType Blazor LuanNiao</PackageTags>
+    <PackageTags>.netcore UnionType LuanNiao Tools</PackageTags>
     <PackageReleaseNotes>You can see the detail info from the github page.</PackageReleaseNotes>
-    <AssemblyVersion>0.0.4.200</AssemblyVersion>
-    <FileVersion>0.0.4.200</FileVersion>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <PackageIcon>luanniao.jpg</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,6 +27,14 @@ You can see the detail info from the github page.</Description>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="luanniao.jpg" />
+    <None Include="luanniao.jpg">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.1" />

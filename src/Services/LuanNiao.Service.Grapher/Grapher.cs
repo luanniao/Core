@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Tracing;
@@ -7,13 +6,13 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
-namespace LuanNiao.Services.Logger.Handler
+namespace LuanNiao.Service.Grapher
 {
-    internal class LogHandler : EventListener
+    public class Grapher : EventListener
     {
-        private LogHandler() { }
-        private static LogHandler _instance = null;
-        private readonly Dictionary<string, HandlerOptions> _handlerOptions = new Dictionary<string, HandlerOptions>();
+        private Grapher() { }
+        private static Grapher _instance = null;
+        private readonly Dictionary<string, GrapherOptions> _handlerOptions = new Dictionary<string, GrapherOptions>();
 
         public static void Init(string configFilePath)
         {
@@ -29,12 +28,13 @@ namespace LuanNiao.Services.Logger.Handler
             using (var fr = configFile.OpenText())
             {
                 var content = fr.ReadToEnd();
-                var configInfo = JsonSerializer.Deserialize<List<HandlerOptions>>(content);
+
+                var configInfo = JsonSerializer.Deserialize<List<GrapherOptions>>(content);
                 Init(configInfo);
             }
         }
 
-        public static void Init([NotNull] IList<HandlerOptions> handlerOptions)
+        public static void Init([NotNull] IList<GrapherOptions> handlerOptions)
         {
             if (_instance != null)
             {
@@ -49,12 +49,8 @@ namespace LuanNiao.Services.Logger.Handler
                 if (handlerOptions.GroupBy(item => item.SourceName.ToLower()).Any(item => item.Count() > 1))
                 {
                     throw new Exception("Your log configration was invalid, Please check the your config content.");
-                }
-                else if (!handlerOptions.Any(item => item.SourceName.Equals(Common.Constants.LOGGER_EVENT_SOURCE_NAME, StringComparison.InvariantCultureIgnoreCase)))
-                {
-                    throw new Exception("You must set the logger config info in to your json.");
-                }
-                _instance = new LogHandler();
+                }               
+                _instance = new Grapher();
                 foreach (var item in handlerOptions)
                 {
                     _instance._handlerOptions.Add(item.SourceName, item);
@@ -64,7 +60,7 @@ namespace LuanNiao.Services.Logger.Handler
 
         protected override void OnEventSourceCreated(EventSource source)
         {
-            if (!_handlerOptions.TryGetValue(source.Name,out var handler))
+            if (!_handlerOptions.TryGetValue(source.Name, out var handler))
             {
                 return;
             }

@@ -1,10 +1,12 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using System.Text;
 
-namespace LuanNiao.Services.Logger.Handler
+namespace LuanNiao.Service.Grapher
 {
-    public class HandlerOptions
+    public class GrapherOptions
     {
         public string? SourceName { get; set; }
         public EventLevel Level { get; set; } = EventLevel.Error;

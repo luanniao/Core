@@ -5,57 +5,35 @@ using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading;
 
 namespace LuanNiao.Service.Grapher
 {
-    public class Grapher : EventListener
+    public sealed partial class Grapher : EventListener
     {
-        private Grapher() { }
-        private static Grapher _instance = null;
-        private readonly Dictionary<string, GrapherOptions> _handlerOptions = new Dictionary<string, GrapherOptions>();
+        private Grapher() {
 
-        public static void Init(string configFilePath)
-        {
-            if (_instance != null)
-            {
-                return;
-            }
-            var configFile = new FileInfo(configFilePath);
-            if (!configFile.Exists)
-            {
-                throw new FileNotFoundException($"The file in the path:{configFilePath}, wasn't exists.");
-            }
-            using (var fr = configFile.OpenText())
-            {
-                var content = fr.ReadToEnd();
-
-                var configInfo = JsonSerializer.Deserialize<List<GrapherOptions>>(content);
-                Init(configInfo);
-            }
+            BeginConsoleJob();
         }
+        private static Grapher _instance = null;
+        private static readonly object _lock = 1;
+        private readonly Dictionary<string, GrapherOptions> _handlerOptions = new Dictionary<string, GrapherOptions>();
+        private bool _disposed = false;
+        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private readonly Semaphore _consoleSemaphore = new Semaphore(0, int.MaxValue);
 
-        public static void Init([NotNull] IList<GrapherOptions> handlerOptions)
+
+        public override void Dispose()
         {
-            if (_instance != null)
+            if (_disposed)
             {
                 return;
             }
-            lock (_instance)
-            {
-                if (_instance != null)
-                {
-                    return;
-                }
-                if (handlerOptions.GroupBy(item => item.SourceName.ToLower()).Any(item => item.Count() > 1))
-                {
-                    throw new Exception("Your log configration was invalid, Please check the your config content.");
-                }               
-                _instance = new Grapher();
-                foreach (var item in handlerOptions)
-                {
-                    _instance._handlerOptions.Add(item.SourceName, item);
-                }
-            }
+            _disposed = true;
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Dispose();
+            _consoleSemaphore.Dispose();
+            base.Dispose();
         }
 
         protected override void OnEventSourceCreated(EventSource source)
@@ -66,16 +44,6 @@ namespace LuanNiao.Service.Grapher
             }
             EnableEvents(source, handler.Level, handler.Keywords, handler.Arguments);
         }
-        protected override void OnEventWritten(EventWrittenEventArgs eventData)
-        {
-            if (!_handlerOptions.TryGetValue(eventData.EventSource.Name, out var handler))
-            {
-                return;
-            }
-            for (int i = 0; i < eventData.Payload.Count; ++i)
-            {
-                Console.WriteLine($"{eventData.Payload[i]}");
-            }
-        }
+      
     }
 }

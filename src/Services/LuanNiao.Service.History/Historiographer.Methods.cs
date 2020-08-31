@@ -1,20 +1,25 @@
 ﻿using System.Diagnostics.Tracing;
+using System.Linq;
+using System.Text;
 
 namespace LuanNiao.Service.History
 {
     public sealed partial class Historiographer
     {
+
         [Event(EVENTID_TRACE,
-          Message = "We go the new tunnel {1} from the channel {0}",
           Opcode = EventOpcode.Info,
-          Keywords = EKW_TRACE,
-          Level = EventLevel.Informational)]
-        public void Trace(params object[] args)
+          Keywords = Keywords.EKW_TRACE,
+          Level = EventLevel.Informational,
+            Channel = EventChannel.Analytic)]
+        public void Trace(string message)
         {
-            if (IsEnabled(EventLevel.Verbose, EKW_TRACE))
+            if (IsEnabled(EventLevel.Verbose, Keywords.EKW_TRACE))
             {
-                WriteEvent(EVENTID_TRACE, args);
+                WriteEvent(EVENTID_TRACE, message);
             }
-        } 
+        }
+
+
     }
 }

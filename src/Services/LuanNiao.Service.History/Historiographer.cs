@@ -21,12 +21,14 @@ namespace LuanNiao.Service.History
         public const int EVENTID_ERROR = 5;
         public const int EVENTID_CRITICAL = 6;
 
-
-        public const EventKeywords EKW_TRACE = (EventKeywords)1;
-        public const EventKeywords EKW_DEBUG = (EventKeywords)2;
-        public const EventKeywords EKW_INFO = (EventKeywords)3;
-        public const EventKeywords EKW_WARNING = (EventKeywords)4;
-        public const EventKeywords EKW_ERROR = (EventKeywords)5;
-        public const EventKeywords EKW_CRITICAL = (EventKeywords)6;
+        public class Keywords
+        {
+            public const EventKeywords EKW_TRACE = (EventKeywords)1;
+            public const EventKeywords EKW_DEBUG = (EventKeywords)2;
+            public const EventKeywords EKW_INFO = (EventKeywords)4;
+            public const EventKeywords EKW_WARNING = (EventKeywords)8;
+            public const EventKeywords EKW_ERROR = (EventKeywords)16;
+            public const EventKeywords EKW_CRITICAL = (EventKeywords)32;
+        }
     }
 }

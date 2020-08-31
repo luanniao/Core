@@ -22,13 +22,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuanNiao.JsonConverterExten
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CAAF1B4F-FE68-44BA-A1B6-D9D14DD9A560}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuanNiao.Services.Logger", "Services\LuanNiao.Services.Logger\LuanNiao.Services.Logger.csproj", "{706EF17E-47F3-4388-A2D0-F86C30867C1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuanNiao.Service.History", "Services\LuanNiao.Service.History\LuanNiao.Service.History.csproj", "{E9588136-7AC8-4907-B14F-B2A92F40F00E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z.LuanNiao.Services.Logger.Test", "Z.LuanNiao.Services.Logger.Test\Z.LuanNiao.Services.Logger.Test.csproj", "{EFE01596-ACAE-4E2C-97CF-0FDE4542C394}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuanNiao.Service.Grapher", "Services\LuanNiao.Service.Grapher\LuanNiao.Service.Grapher.csproj", "{13D96725-6A9E-4205-B2FC-FEBF59D8BC0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuanNiao.Service.History", "Services\LuanNiao.Service.History\LuanNiao.Service.History.csproj", "{E9588136-7AC8-4907-B14F-B2A92F40F00E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuanNiao.Service.Grapher", "Services\LuanNiao.Service.Grapher\LuanNiao.Service.Grapher.csproj", "{13D96725-6A9E-4205-B2FC-FEBF59D8BC0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z.LuanNiao.Service.Test", "Z.LuanNiao.Service.Test\Z.LuanNiao.Service.Test.csproj", "{CD879149-2316-42A3-8F6E-1D2D79313204}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,14 +50,6 @@ Global
 		{06038744-D913-40BB-AACF-E8FF16A3E36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06038744-D913-40BB-AACF-E8FF16A3E36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06038744-D913-40BB-AACF-E8FF16A3E36B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{706EF17E-47F3-4388-A2D0-F86C30867C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{706EF17E-47F3-4388-A2D0-F86C30867C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{706EF17E-47F3-4388-A2D0-F86C30867C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{706EF17E-47F3-4388-A2D0-F86C30867C1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFE01596-ACAE-4E2C-97CF-0FDE4542C394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFE01596-ACAE-4E2C-97CF-0FDE4542C394}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFE01596-ACAE-4E2C-97CF-0FDE4542C394}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFE01596-ACAE-4E2C-97CF-0FDE4542C394}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E9588136-7AC8-4907-B14F-B2A92F40F00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E9588136-7AC8-4907-B14F-B2A92F40F00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9588136-7AC8-4907-B14F-B2A92F40F00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,6 +58,10 @@ Global
 		{13D96725-6A9E-4205-B2FC-FEBF59D8BC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D96725-6A9E-4205-B2FC-FEBF59D8BC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13D96725-6A9E-4205-B2FC-FEBF59D8BC0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD879149-2316-42A3-8F6E-1D2D79313204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD879149-2316-42A3-8F6E-1D2D79313204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD879149-2316-42A3-8F6E-1D2D79313204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD879149-2316-42A3-8F6E-1D2D79313204}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,10 +71,9 @@ Global
 		{D228D3BA-B486-4F00-BC75-8152DB0568F3} = {7E8091ED-80FC-4D37-B5C9-11F2A97CF66E}
 		{487DD33A-3219-47A6-A23F-527DD27926D2} = {7E8091ED-80FC-4D37-B5C9-11F2A97CF66E}
 		{06038744-D913-40BB-AACF-E8FF16A3E36B} = {46291BD5-7E98-4DCD-967C-E200F9A73B11}
-		{706EF17E-47F3-4388-A2D0-F86C30867C1B} = {CAAF1B4F-FE68-44BA-A1B6-D9D14DD9A560}
-		{EFE01596-ACAE-4E2C-97CF-0FDE4542C394} = {CAAF1B4F-FE68-44BA-A1B6-D9D14DD9A560}
 		{E9588136-7AC8-4907-B14F-B2A92F40F00E} = {CAAF1B4F-FE68-44BA-A1B6-D9D14DD9A560}
 		{13D96725-6A9E-4205-B2FC-FEBF59D8BC0C} = {CAAF1B4F-FE68-44BA-A1B6-D9D14DD9A560}
+		{CD879149-2316-42A3-8F6E-1D2D79313204} = {CAAF1B4F-FE68-44BA-A1B6-D9D14DD9A560}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80793745-7E58-459A-AB37-22FDFFFA2F6C}

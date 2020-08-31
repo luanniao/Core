@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Extends\LuanNiao.JsonConverterExtends\LuanNiao.JsonConverterExtends.csproj" />
+  </ItemGroup>
+
 </Project>

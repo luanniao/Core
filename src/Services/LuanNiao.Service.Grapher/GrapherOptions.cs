@@ -12,10 +12,7 @@ namespace LuanNiao.Service.Grapher
         public IDictionary<string, string?>? Arguments { get; set; } = null;
         public Dictionary<EventLevel, GrapherOutput> OutPutsSettings { get; set; } = new Dictionary<EventLevel, GrapherOutput>();
         public Dictionary<EventLevel, bool> AsyncSettings { get; set; } = new Dictionary<EventLevel, bool>();
-
         public Dictionary<EventKeywords, string> EventKeywordsDescription { get; set; } = new Dictionary<EventKeywords, string>();
-
-
     }
 
     public enum GrapherOutput

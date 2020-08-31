@@ -11,8 +11,8 @@ namespace LuanNiao.Service.Grapher
 {
     public sealed partial class Grapher : EventListener
     {
-        private Grapher() {
-
+        private Grapher() 
+        {
             BeginConsoleJob();
         }
         private static Grapher _instance = null;
@@ -21,7 +21,6 @@ namespace LuanNiao.Service.Grapher
         private bool _disposed = false;
         private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
         private readonly Semaphore _consoleSemaphore = new Semaphore(0, int.MaxValue);
-
 
         public override void Dispose()
         {

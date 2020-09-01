@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuanNiao.Service.History", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LuanNiao.Service.Grapher", "Services\LuanNiao.Service.Grapher\LuanNiao.Service.Grapher.csproj", "{13D96725-6A9E-4205-B2FC-FEBF59D8BC0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z.LuanNiao.Service.Test", "Services\Z.LuanNiao.Service.Test\Z.LuanNiao.Service.Test.csproj", "{CD879149-2316-42A3-8F6E-1D2D79313204}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Z.LuanNiao.Service.Performace.Test", "Services\Z.LuanNiao.Service.Test\Z.LuanNiao.Service.Performace.Test.csproj", "{CD879149-2316-42A3-8F6E-1D2D79313204}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

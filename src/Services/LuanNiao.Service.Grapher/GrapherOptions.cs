@@ -7,7 +7,7 @@ namespace LuanNiao.Service.Grapher
     public class GrapherOptions
     {
         public string? SourceName { get; set; }
-        public EventLevel Level { get; set; } = EventLevel.Error;
+        public EventLevel Level { get; set; } = EventLevel.LogAlways;
         public EventKeywords Keywords { get; set; } = EventKeywords.All;
         public IDictionary<string, string?>? Arguments { get; set; } = null;
         public Dictionary<EventLevel, GrapherOutput> OutPutsSettings { get; set; } = new Dictionary<EventLevel, GrapherOutput>();

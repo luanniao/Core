@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Z.LuanNiao.Service.Performace.Test
+namespace Z.LuanNiao.Service.Performance.Test
 {
 
     public class AsyncLogTest

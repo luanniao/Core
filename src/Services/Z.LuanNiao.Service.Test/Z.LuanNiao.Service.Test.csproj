@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LuanNiao.Service.Grapher\LuanNiao.Service.Grapher.csproj" />
+    <ProjectReference Include="..\LuanNiao.Service.History\LuanNiao.Service.History.csproj" />
+  </ItemGroup>
+
 </Project>

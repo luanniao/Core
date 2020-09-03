@@ -42,6 +42,7 @@ namespace LuanNiao.Service.Grapher
                 return;
             }
             EnableEvents(source, handler.Level, handler.Keywords, handler.Arguments);
+            //EnableEvents(source, EventLevel.LogAlways, EventKeywords.All);
         }
       
     }

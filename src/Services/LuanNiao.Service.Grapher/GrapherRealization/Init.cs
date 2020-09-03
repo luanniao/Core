@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 namespace LuanNiao.Service.Grapher
@@ -29,10 +30,36 @@ namespace LuanNiao.Service.Grapher
             }
         }
 
+        /// <summary>
+        /// Get all options which in the grapher instance.
+        /// </summary>
+        /// <returns></returns>
+        public static IList<GrapherOptions> GetAllOptions()
+        {
+            return _instance._handlerOptions.Values.ToList();
+        }
+
+        public static void ResetConfig([NotNull] IList<GrapherOptions> handlerOptions)
+        {
+            if (handlerOptions == null || handlerOptions.Count == 0 || _instance == null)
+            {
+                return;
+            }
+            _instance._handlerOptions.Clear(); 
+            foreach (var item in handlerOptions)
+            {
+                _instance._handlerOptions.Add(item.SourceName, item);
+            }
+        }
+
+        /// <summary>
+        /// Use the custom options to init the grapher
+        /// </summary>
+        /// <param name="handlerOptions"></param>
         public static void Init([NotNull] IList<GrapherOptions> handlerOptions)
         {
             if (handlerOptions == null || handlerOptions.Count == 0 || _instance != null)
-            {
+            { 
                 return;
             }
             lock (_lock)

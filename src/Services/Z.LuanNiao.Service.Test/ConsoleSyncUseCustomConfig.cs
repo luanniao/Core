@@ -33,10 +33,11 @@ namespace Z.LuanNiao.Service.Test
                  }
             };
             Grapher.Init(new[] { op });
+            Grapher.ResetConfig(new[] { op });
         }
 
 
-        [Fact(DisplayName = "追踪级别")]
+        [Fact(DisplayName = "追踪级别", Timeout = 1000)]
         public void Trace()
         {
             lock (this)
@@ -46,12 +47,12 @@ namespace Z.LuanNiao.Service.Test
                 using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
                 Grapher.textWriter = write;
-                Historiographer.Instance.Trace(Guid.NewGuid(), data);
+                Historiographer.Instance.Trace(Guid.NewGuid(), data); 
                 Assert.True(write.Result);
             }
         }
 
-        [Fact(DisplayName = "调试级别")]
+        [Fact(DisplayName = "调试级别", Timeout = 1000)]
         public void Debug()
         {
             lock (this)
@@ -66,7 +67,7 @@ namespace Z.LuanNiao.Service.Test
             }
         }
 
-        [Fact(DisplayName = "信息级别")]
+        [Fact(DisplayName = "信息级别", Timeout = 1000)]
         public void Info()
         {
             lock (this)
@@ -81,7 +82,7 @@ namespace Z.LuanNiao.Service.Test
             }
         }
 
-        [Fact(DisplayName = "警告级别")]
+        [Fact(DisplayName = "警告级别", Timeout = 1000)]
         public void Warning()
         {
             lock (this)
@@ -96,7 +97,7 @@ namespace Z.LuanNiao.Service.Test
             }
         }
 
-        [Fact(DisplayName = "错误级别")]
+        [Fact(DisplayName = "错误级别", Timeout = 1000)]
         public void Error()
         {
             lock (this)
@@ -111,7 +112,7 @@ namespace Z.LuanNiao.Service.Test
             }
         }
 
-        [Fact(DisplayName = "灾难级别")]
+        [Fact(DisplayName = "灾难级别", Timeout = 1000)]
         public void Critical()
         {
             lock (this)

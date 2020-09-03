@@ -2,28 +2,43 @@ using LuanNiao.Service.Grapher;
 using LuanNiao.Service.History;
 using LuanNiao.Service.History.Common;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Z.LuanNiao.Service.Test
 {
-    [Collection("ConsolePrint")]
-    public class ConsoleSyncUseDefaultConfig
+    
+    [Collection("ConsolePrint")] 
+    public class ConsoleAsync
     {
         private readonly ITestOutputHelper _testOutput;
-        public ConsoleSyncUseDefaultConfig(ITestOutputHelper testOutput)
+        public ConsoleAsync(ITestOutputHelper testOutput)
         {
             this._testOutput = testOutput;
             var op = new GrapherOptions()
             {
                 SourceName = Constants.LOGGER_EVENT_SOURCE_NAME,
+                Arguments = null,
+                Keywords = EventKeywords.All,
+                Level = EventLevel.LogAlways,
+                AsyncSettings = new Dictionary<EventLevel, bool>() { { EventLevel.LogAlways, true } },
+                OutPutsSettings = new Dictionary<EventLevel, GrapherOutput>() {
+                     { EventLevel.LogAlways, GrapherOutput.Console }
+                 },
+                EventKeywordsDescription = new Dictionary<EventKeywords, string>() {
+                     {Historiographer.Keywords.LUANNIAO_HISTORY,nameof(Historiographer.Keywords.LUANNIAO_HISTORY)}
+                 }
             };
-            Grapher.Init(new[] { op }); 
+            Grapher.Init(new[] { op });
             Grapher.ResetConfig(new[] { op });
         }
 
-        [Fact(DisplayName = "追踪级别", Timeout = 1000)]
+
+        [Fact(DisplayName = "追踪级别",Timeout =1000)]
         public void Trace()
         {
             lock (this)
@@ -34,6 +49,7 @@ namespace Z.LuanNiao.Service.Test
                 write.SetData(data);
                 Grapher.textWriter = write;
                 Historiographer.Instance.Trace(Guid.NewGuid(), data);
+                write.Wait();
                 Assert.True(write.Result);
             }
         }
@@ -49,6 +65,7 @@ namespace Z.LuanNiao.Service.Test
                 write.SetData(data);
                 Grapher.textWriter = write;
                 Historiographer.Instance.Debug(Guid.NewGuid(), data);
+                write.Wait();
                 Assert.True(write.Result);
             }
         }
@@ -64,6 +81,7 @@ namespace Z.LuanNiao.Service.Test
                 write.SetData(data);
                 Grapher.textWriter = write;
                 Historiographer.Instance.Info(Guid.NewGuid(), data);
+                write.Wait();
                 Assert.True(write.Result);
             }
         }
@@ -79,6 +97,7 @@ namespace Z.LuanNiao.Service.Test
                 write.SetData(data);
                 Grapher.textWriter = write;
                 Historiographer.Instance.Warning(Guid.NewGuid(), data);
+                write.Wait();
                 Assert.True(write.Result);
             }
         }
@@ -94,6 +113,7 @@ namespace Z.LuanNiao.Service.Test
                 write.SetData(data);
                 Grapher.textWriter = write;
                 Historiographer.Instance.Error(Guid.NewGuid(), data);
+                write.Wait();
                 Assert.True(write.Result);
             }
         }
@@ -109,8 +129,11 @@ namespace Z.LuanNiao.Service.Test
                 write.SetData(data);
                 Grapher.textWriter = write;
                 Historiographer.Instance.Critical(Guid.NewGuid(), data);
+                write.Wait();
                 Assert.True(write.Result);
             }
         }
+
+
     }
 }

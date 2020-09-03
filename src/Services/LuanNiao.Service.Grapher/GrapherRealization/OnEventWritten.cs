@@ -26,7 +26,7 @@ namespace LuanNiao.Service.Grapher
             }
             else
             {
-                textWriter.WriteLine(MessageBuilder(handler, eventData));
+                TextWriter.WriteLine(MessageBuilder(handler, eventData));
             }
         }
 

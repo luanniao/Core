@@ -18,7 +18,7 @@ namespace LuanNiao.Service.Grapher
             }
             else
             {
-                textWriter.WriteLine(MessageBuilder(options, data));
+                TextWriter.WriteLine(MessageBuilder(options, data));
             }
         }
 
@@ -31,7 +31,7 @@ namespace LuanNiao.Service.Grapher
                 {
                     if (_consoleWriterQueue.TryDequeue(out var msg))
                     {
-                        textWriter.WriteLine(msg);
+                        TextWriter.WriteLine(msg);
                     }
                     _consoleSemaphore.WaitOne(10);
                 }

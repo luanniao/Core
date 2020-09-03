@@ -17,7 +17,7 @@ namespace LuanNiao.Service.History
             if (IsEnabled(EventLevel.LogAlways, Keywords.LUANNIAO_HISTORY))
             {
                 WriteEventWithRelatedActivityId(EventID.TRACE, relatedActivityId, message);
-            }
+            }            
         }
 
         [Event(EventID.DEBUG,

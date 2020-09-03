@@ -22,6 +22,8 @@ namespace LuanNiao.Service.Grapher
         private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
         private readonly Semaphore _consoleSemaphore = new Semaphore(0, int.MaxValue);
 
+        public static TextWriter textWriter = Console.Out;
+
         public override void Dispose()
         {
             if (_disposed)
@@ -41,8 +43,7 @@ namespace LuanNiao.Service.Grapher
             {
                 return;
             }
-            EnableEvents(source, handler.Level, handler.Keywords, handler.Arguments);
-            //EnableEvents(source, EventLevel.LogAlways, EventKeywords.All);
+            EnableEvents(source, handler.Level, handler.Keywords, handler.Arguments); 
         }
       
     }

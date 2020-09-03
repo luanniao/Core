@@ -7,14 +7,17 @@ using System.Diagnostics.Tracing;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Z.LuanNiao.Service.Test
 {
-    [Collection("同步测试 用户自定义配置")]
+    [Collection("ConsolePrint")]
     public class ConsoleSyncUseCustomConfig
     {
-        public ConsoleSyncUseCustomConfig()
+        private readonly ITestOutputHelper _testOutput;
+        public ConsoleSyncUseCustomConfig(ITestOutputHelper testOutput)
         {
+            this._testOutput = testOutput;
             var op = new GrapherOptions()
             {
                 SourceName = Constants.LOGGER_EVENT_SOURCE_NAME,
@@ -32,15 +35,17 @@ namespace Z.LuanNiao.Service.Test
             Grapher.Init(new[] { op });
         }
 
+
         [Fact(DisplayName = "追踪级别")]
         public void Trace()
         {
             lock (this)
             {
+                Assert.True(Historiographer.Instance.IsEnabled());
                 var data = Guid.NewGuid().ToString();
-                using var write = new CustomWriter();
+                using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Console.SetOut(write);
+                Grapher.textWriter = write;
                 Historiographer.Instance.Trace(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -51,11 +56,12 @@ namespace Z.LuanNiao.Service.Test
         {
             lock (this)
             {
+                Assert.True(Historiographer.Instance.IsEnabled());
                 var data = Guid.NewGuid().ToString();
-                using var write = new CustomWriter();
+                using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Console.SetOut(write);
-                Historiographer.Instance.Debug(Guid.NewGuid(), data); 
+                Grapher.textWriter = write;
+                Historiographer.Instance.Debug(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
         }
@@ -65,10 +71,11 @@ namespace Z.LuanNiao.Service.Test
         {
             lock (this)
             {
+                Assert.True(Historiographer.Instance.IsEnabled());
                 var data = Guid.NewGuid().ToString();
-                using var write = new CustomWriter();
+                using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Console.SetOut(write);
+                Grapher.textWriter = write;
                 Historiographer.Instance.Info(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -79,10 +86,11 @@ namespace Z.LuanNiao.Service.Test
         {
             lock (this)
             {
+                Assert.True(Historiographer.Instance.IsEnabled());
                 var data = Guid.NewGuid().ToString();
-                using var write = new CustomWriter();
+                using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Console.SetOut(write);
+                Grapher.textWriter = write;
                 Historiographer.Instance.Warning(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -93,10 +101,11 @@ namespace Z.LuanNiao.Service.Test
         {
             lock (this)
             {
+                Assert.True(Historiographer.Instance.IsEnabled());
                 var data = Guid.NewGuid().ToString();
-                using var write = new CustomWriter();
+                using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Console.SetOut(write);
+                Grapher.textWriter = write;
                 Historiographer.Instance.Error(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -107,10 +116,11 @@ namespace Z.LuanNiao.Service.Test
         {
             lock (this)
             {
+                Assert.True(Historiographer.Instance.IsEnabled());
                 var data = Guid.NewGuid().ToString();
-                using var write = new CustomWriter();
+                using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Console.SetOut(write);
+                Grapher.textWriter = write;
                 Historiographer.Instance.Critical(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }

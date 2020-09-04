@@ -27,10 +27,27 @@ namespace LuanNiao.Service.Grapher.Extends.Sqlite
             }
         }
 
-        public void Write(int eventID, long tickets, string level, string[] keywords, string message, string op, string ActivityId, string relatedActivityId, string customPayLoad)
+        public void Write(int eventID, long tickets, string level, string[] keywords, string message, string op, string activityId, string relatedActivityId, string customPayLoad)
         {
-
-            throw new NotImplementedException();
+            using (var db=new SqliteConnection(_connectionStr))
+            {
+                using (var com=db.CreateCommand())
+                {
+                    com.CommandText = SqlQuery.INSERT_DATA;
+                    com.Parameters.AddRange(new SqliteParameter[] { 
+                     new SqliteParameter("@eventID",eventID),
+                     new SqliteParameter("@tickets",tickets),
+                     new SqliteParameter("@level",level),
+                     new SqliteParameter("@keywords",string.Join(",",keywords)),
+                     new SqliteParameter("@message",message),
+                     new SqliteParameter("@op",op),
+                     new SqliteParameter("@activityId",activityId),
+                     new SqliteParameter("@relatedActivityId",relatedActivityId),
+                     new SqliteParameter("@customPayLoad",customPayLoad),
+                    });
+                    com.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

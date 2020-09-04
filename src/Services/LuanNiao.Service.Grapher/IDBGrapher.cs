@@ -15,7 +15,7 @@ namespace LuanNiao.Service.Grapher
             string[] keywords,
             string message,
             string op,
-            string ActivityId,
+            string activityId,
             string relatedActivityId,
             string customPayLoad);
     }

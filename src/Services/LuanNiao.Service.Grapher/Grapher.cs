@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Tracing;
@@ -15,6 +16,7 @@ namespace LuanNiao.Service.Grapher
         {
             BeginConsoleJob();
         }
+        private static IConfiguration _configuration = null;
         private static Grapher _instance = null;
         private static readonly object _lock = 1;
         private readonly Dictionary<string, GrapherOptions> _handlerOptions = new Dictionary<string, GrapherOptions>();

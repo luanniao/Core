@@ -19,6 +19,7 @@ namespace LuanNiao.Service.Grapher
                         ConsoleWriter(handler, eventData);
                         break;
                     case GrapherOutput.File:
+                        FileWritter(handler, eventData);
                         break;
                     default:
                         break;

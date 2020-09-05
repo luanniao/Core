@@ -26,7 +26,7 @@ namespace Z.LuanNiao.Service.Test
                 Level = EventLevel.LogAlways,
                 AsyncSettings = new Dictionary<EventLevel, bool>() { { EventLevel.LogAlways, false } },
                 OutPutsSettings = new Dictionary<EventLevel, GrapherOutput>() {
-                     { EventLevel.LogAlways, GrapherOutput.Console }
+                     { EventLevel.LogAlways, GrapherOutput.File }
                  },
                 EventKeywordsDescription = new Dictionary<EventKeywords, string>() {
                      {Historiographer.Keywords.LUANNIAO_HISTORY,nameof(Historiographer.Keywords.LUANNIAO_HISTORY)}

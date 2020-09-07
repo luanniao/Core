@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Configuration;
 using System.Diagnostics.Tracing;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -64,7 +65,19 @@ namespace LuanNiao.Service.Grapher
         {
             var filePath = $"{_fileConfig.Path}/{{0}}.txt";
             var fileName = "log";
+            if (_fileConfig.DateFormat)
+            {
+                fileName = $"{fileName}_{DateTime.Today.ToString("yyyy-MM-dd")}";
+            }
             filePath = string.Format(filePath, fileName);
+            //if (_fileConfig.MaxLenth > 0 && File.Exists(filePath))
+            //{
+            //    FileInfo info = new FileInfo(filePath);
+            //    if (info.Length > _fileConfig.MaxLenth)
+            //    {
+                    
+            //    }
+            //}
             var streamWriter = File.AppendText(filePath);
             streamWriter.WriteLine(msg);
             streamWriter.Close();

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Concurrent;
 using System.Configuration;
@@ -14,7 +15,7 @@ namespace LuanNiao.Service.Grapher
     public sealed partial class Grapher
     {
         public class FileConfig {
-            public const string Logging = "LuanNiaoLogging";
+            public string LoggingName = "LuanNiaoLogging";
             public string Path { get; set; } = "C:/LuanNiaoLog";
             public bool DateFormat { get; set; } = true;
             public int MaxLenth { get; set; } = 1024;
@@ -51,14 +52,19 @@ namespace LuanNiao.Service.Grapher
             if (File.Exists(filePath))
             {
                 _configuration = new ConfigurationBuilder().AddJsonFile(filePath, false, true).Build();
-                _fileConfig = new FileConfig() { Path = _configuration["LuanNiaoLogging:Path"] };
+                _fileConfig  = new ServiceCollection().AddOptions().Configure<FileConfig>(_configuration.GetSection(_fileConfig.LoggingName))
+                    .BuildServiceProvider()
+                    .GetService<IOptions<FileConfig>>()
+                    .Value;
             }
             _fileConfig.CreateDirectory();
         }
         
         private void Write(string msg)
         {
-            var filePath = $"{_fileConfig.Path}/log.txt";
+            var filePath = $"{_fileConfig.Path}/{{0}}.txt";
+            var fileName = "log";
+            filePath = string.Format(filePath, fileName);
             var streamWriter = File.AppendText(filePath);
             streamWriter.WriteLine(msg);
             streamWriter.Close();

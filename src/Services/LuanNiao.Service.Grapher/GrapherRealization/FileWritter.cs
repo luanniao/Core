@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 using System.Configuration;
 using System.Diagnostics.Tracing;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
@@ -15,16 +16,55 @@ namespace LuanNiao.Service.Grapher
 {
     public sealed partial class Grapher
     {
-        public class FileConfig {
+        public class FileConfig
+        {
             public string LoggingName = "LuanNiaoLogging";
-            public string Path { get; set; } = "C:/LuanNiaoLog";
+            public string Path { get; set; } = "C:/LuanNiaoLogs";
             public bool DateFormat { get; set; } = true;
             public int MaxLenth { get; set; } = 1024;
-
-            public void CreateDirectory() {
+            public void CreateDirectory()
+            {
                 if (!Directory.Exists(Path))
                 {
                     Directory.CreateDirectory(Path);
+                }
+            }
+            public string FileName
+            {
+                get
+                {
+                    var extName = "txt";
+                    var fileName = "log";
+                    var isNewFile = false;
+                    if (this.DateFormat)
+                    {
+                        fileName = $"{fileName}_{DateTime.Today.ToString("yyyy-MM-dd")}";
+                    }
+                    if (this.MaxLenth > 0)
+                    {
+                        fileName = $"{fileName}.";
+                        var dirct = new DirectoryInfo(this.Path);
+                        var logLength = 0;
+                        var lastFile = dirct.GetFiles($"*{fileName}*.{extName}").OrderByDescending(t => t.LastWriteTime).FirstOrDefault();
+                        if (lastFile != null && lastFile.Exists)
+                        {
+                            fileName = lastFile.Name;
+                        }
+                        else
+                        {
+                            fileName = $"{fileName}{logLength}.{extName}";
+                            lastFile = dirct.GetFiles(fileName).FirstOrDefault();
+                        }
+                        isNewFile = lastFile != null && lastFile.Length > this.MaxLenth;
+                        if (isNewFile)
+                        {
+                            var spFile = fileName.Split(".");
+                            int.TryParse(spFile[1], out logLength);
+                            logLength++;
+                            fileName = $"{spFile[0]}.{logLength}.{extName}";
+                        }
+                    }
+                    return fileName;
                 }
             }
         }
@@ -60,27 +100,14 @@ namespace LuanNiao.Service.Grapher
             }
             _fileConfig.CreateDirectory();
         }
-        
+
         private void Write(string msg)
         {
-            var filePath = $"{_fileConfig.Path}/{{0}}.txt";
-            var fileName = "log";
-            if (_fileConfig.DateFormat)
-            {
-                fileName = $"{fileName}_{DateTime.Today.ToString("yyyy-MM-dd")}";
-            }
-            filePath = string.Format(filePath, fileName);
-            //if (_fileConfig.MaxLenth > 0 && File.Exists(filePath))
-            //{
-            //    FileInfo info = new FileInfo(filePath);
-            //    if (info.Length > _fileConfig.MaxLenth)
-            //    {
-                    
-            //    }
-            //}
+            var filePath = $"{_fileConfig.Path}/{_fileConfig.FileName}";
             var streamWriter = File.AppendText(filePath);
             streamWriter.WriteLine(msg);
             streamWriter.Close();
         }
+
     }
 }

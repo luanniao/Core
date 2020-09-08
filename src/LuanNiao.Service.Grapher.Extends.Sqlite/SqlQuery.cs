@@ -27,6 +27,7 @@ namespace LuanNiao.Service.Grapher.Extends.Sqlite
 
         public const string INSERT_DATA = @"
             insert into ln_grapher_log values(@lid,@eventID,@tickets,@level,@keywords,@message,@op,@activityID,@relatedActivityID,@customPayload);
+                SELECT LAST_INSERT_ROWID() FROM ln_grapher_log
         ";
     }
 }

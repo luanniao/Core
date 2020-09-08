@@ -9,7 +9,7 @@ namespace LuanNiao.Service.Grapher
     public sealed partial class Grapher
     {
         private readonly ConcurrentQueue<string> _consoleWriterQueue = new ConcurrentQueue<string>();
-        private void ConsoleWriter(GrapherOptions options, EventWrittenEventArgs data)
+        private void WriteToConsole(GrapherOptions options, EventWrittenEventArgs data)
         {
             if (options.AsyncSettings.TryGetValue(data.Level, out var isAsync) && isAsync)
             {
@@ -33,7 +33,7 @@ namespace LuanNiao.Service.Grapher
                     {
                         TextWriter.WriteLine(msg);
                     }
-                    _consoleSemaphore.WaitOne(10);
+                    _consoleSemaphore.WaitOne();
                 }
             }
             , _cancellationTokenSource.Token

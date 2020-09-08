@@ -16,9 +16,12 @@ namespace LuanNiao.Service.Grapher
                 switch (outputSetting)
                 {
                     case GrapherOutput.Console:
-                        ConsoleWriter(handler, eventData);
+                        WriteToConsole(handler, eventData);
                         break;
                     case GrapherOutput.File:
+                        break;
+                    case GrapherOutput.Sqlite:
+                        WriteToDB(handler, eventData);
                         break;
                     default:
                         break;

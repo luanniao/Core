@@ -13,6 +13,7 @@ namespace LuanNiao.Service.Grapher
     {
         private Grapher()
         {
+            BeginDBWriterJob();
             BeginConsoleJob();
         }
         private static Grapher _instance = null;
@@ -21,6 +22,7 @@ namespace LuanNiao.Service.Grapher
         private bool _disposed = false;
         private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
         private readonly Semaphore _consoleSemaphore = new Semaphore(0, int.MaxValue);
+        private readonly Semaphore _dbSemaphore = new Semaphore(0, int.MaxValue);
 
         public static TextWriter TextWriter { get; set; } = Console.Out;
 
@@ -36,6 +38,7 @@ namespace LuanNiao.Service.Grapher
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource.Dispose();
             _consoleSemaphore.Dispose();
+            _dbSemaphore.Dispose();
             base.Dispose();
         }
 
@@ -45,7 +48,7 @@ namespace LuanNiao.Service.Grapher
             {
                 return;
             }
-            EnableEvents(source, handler.Level, handler.Keywords, handler.Arguments);
+            EnableEvents(source, handler.Level, handler.Keywords, handler.Arguments);            
         }
 
     }

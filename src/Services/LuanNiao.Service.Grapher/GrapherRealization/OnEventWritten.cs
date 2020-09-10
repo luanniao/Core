@@ -16,10 +16,13 @@ namespace LuanNiao.Service.Grapher
                 switch (outputSetting)
                 {
                     case GrapherOutput.Console:
-                        ConsoleWriter(handler, eventData);
+                        WriteToConsole(handler, eventData);
                         break;
                     case GrapherOutput.File:
                         FileWritter(handler, eventData);
+                        break;
+                    case GrapherOutput.Sqlite:
+                        WriteToDB(handler, eventData);
                         break;
                     default:
                         break;
@@ -27,7 +30,7 @@ namespace LuanNiao.Service.Grapher
             }
             else
             {
-                textWriter.WriteLine(MessageBuilder(handler, eventData));
+                TextWriter.WriteLine(MessageBuilder(handler, eventData));
             }
         }
 

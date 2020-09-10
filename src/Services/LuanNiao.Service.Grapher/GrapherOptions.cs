@@ -19,5 +19,6 @@ namespace LuanNiao.Service.Grapher
     {
         Console = 0,
         File = 1,
+        Sqlite = 2
     }
 }

@@ -32,7 +32,7 @@ namespace Z.LuanNiao.Service.Test
                 var data = Guid.NewGuid().ToString();
                 using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Grapher.textWriter = write;
+                Grapher.TextWriter = write;
                 Historiographer.Instance.Trace(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -47,7 +47,7 @@ namespace Z.LuanNiao.Service.Test
                 var data = Guid.NewGuid().ToString();
                 using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Grapher.textWriter = write;
+                Grapher.TextWriter = write;
                 Historiographer.Instance.Debug(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -62,7 +62,7 @@ namespace Z.LuanNiao.Service.Test
                 var data = Guid.NewGuid().ToString();
                 using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Grapher.textWriter = write;
+                Grapher.TextWriter = write;
                 Historiographer.Instance.Info(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -77,7 +77,7 @@ namespace Z.LuanNiao.Service.Test
                 var data = Guid.NewGuid().ToString();
                 using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Grapher.textWriter = write;
+                Grapher.TextWriter = write;
                 Historiographer.Instance.Warning(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -92,7 +92,7 @@ namespace Z.LuanNiao.Service.Test
                 var data = Guid.NewGuid().ToString();
                 using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Grapher.textWriter = write;
+                Grapher.TextWriter = write;
                 Historiographer.Instance.Error(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }
@@ -107,7 +107,7 @@ namespace Z.LuanNiao.Service.Test
                 var data = Guid.NewGuid().ToString();
                 using var write = new CustomWriter(this._testOutput);
                 write.SetData(data);
-                Grapher.textWriter = write;
+                Grapher.TextWriter = write;
                 Historiographer.Instance.Critical(Guid.NewGuid(), data);
                 Assert.True(write.Result);
             }

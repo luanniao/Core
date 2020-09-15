@@ -7,7 +7,7 @@ namespace LuanNiao.Service.Grapher
     /// <summary>
     /// Grapher version of db's operation.
     /// </summary>
-    public interface IDBGrapher
+    public interface IDBGrapher : IDisposable
     {
         void Write(int eventID,
             long tickets,

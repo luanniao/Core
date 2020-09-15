@@ -25,10 +25,7 @@ namespace LuanNiao.Service.Grapher.Extends.Sqlite
                 com.ExecuteNonQuery();
             }
         }
-        ~SqliteContext()
-        {
-            _conn.Dispose();
-        }
+        
 
         public void Write(int eventID, long tickets, string level, string[] keywords, string message, string op, string activityId, string relatedActivityId, List<string> customPayLoad)
         {
@@ -61,6 +58,12 @@ namespace LuanNiao.Service.Grapher.Extends.Sqlite
                     customPayLoad
                     );
             }
+        }
+
+        public void Dispose()
+        {
+            _conn.Dispose();
+            Instance = null;
         }
     }
 }

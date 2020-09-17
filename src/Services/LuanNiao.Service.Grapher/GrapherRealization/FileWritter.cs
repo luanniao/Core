@@ -16,14 +16,18 @@ namespace LuanNiao.Service.Grapher
 {
     public sealed partial class Grapher
     {
-        private readonly ConcurrentQueue<string> _fileWriterQueue = new ConcurrentQueue<string>();
-        private void WriteToFile(GrapherOptions options, EventWrittenEventArgs data)
+        public class FileConfig
         {
-            if (options.AsyncSettings.TryGetValue(data.Level, out var isAsync) && isAsync)
+            public string LoggingName = "LuanNiaoLogging";
+            public string Path { get; set; } = "C:/LuanNiaoLogs";
+            public bool DateFormat { get; set; } = true;
+            public int MaxLenth { get; set; } = 1024;
+            public void CreateDirectory()
             {
-                _fileWriterQueue.Enqueue(MessageBuilder(options, data));
-                _fileSemaphore.Release();
-            }
+                if (!Directory.Exists(Path))
+                {
+                    Directory.CreateDirectory(Path);
+                }
             }
             public string FileName
             {
@@ -46,29 +50,63 @@ namespace LuanNiao.Service.Grapher
                         {
                             fileName = lastFile.Name;
                         }
-            else
-            {
-                FileWriter.Write(Encoding.UTF8.GetBytes(MessageBuilder(options, data)).AsSpan());
-            }
-        }
-
-
-        private void BeginFileJob()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                while (!_cancellationTokenSource.IsCancellationRequested)
-                {
-                    if (_consoleWriterQueue.TryDequeue(out var msg))
-                    {
-                        FileWriter.Write(Encoding.UTF8.GetBytes(msg).AsSpan());
+                        else
+                        {
+                            fileName = $"{fileName}{logLength}.{extName}";
+                            lastFile = dirct.GetFiles(fileName).FirstOrDefault();
+                        }
+                        isNewFile = lastFile != null && lastFile.Length > this.MaxLenth;
+                        if (isNewFile)
+                        {
+                            var spFile = fileName.Split(".");
+                            int.TryParse(spFile[1], out logLength);
+                            logLength++;
+                            fileName = $"{spFile[0]}.{logLength}.{extName}";
+                        }
                     }
-                    _fileSemaphore.WaitOne();
+                    return fileName;
                 }
             }
-            , _cancellationTokenSource.Token
-            , TaskCreationOptions.LongRunning
-            , TaskScheduler.Default);
+        }
+        private  FileConfig _fileConfig = new FileConfig();
+
+        private void FileWritter(GrapherOptions options, EventWrittenEventArgs data)
+        {
+            if (_configuration == null) {
+                InitConfig();
+            }
+            if (options.AsyncSettings.TryGetValue(data.Level, out var isAsync) && isAsync)
+            {
+                _consoleWriterQueue.Enqueue(MessageBuilder(options, data));
+                _consoleSemaphore.Release();
+            }
+            else
+            {
+                var msg = MessageBuilder(options, data);
+                textWriter.WriteLine(msg);
+                Write(msg);
+            }
+        }
+        private void InitConfig() {
+            var fileName = "appsettings.json";
+            var filePath = $"{AppContext.BaseDirectory.Replace("\\", "/")}{fileName}";
+            if (File.Exists(filePath))
+            {
+                _configuration = new ConfigurationBuilder().AddJsonFile(filePath, false, true).Build();
+                _fileConfig  = new ServiceCollection().AddOptions().Configure<FileConfig>(_configuration.GetSection(_fileConfig.LoggingName))
+                    .BuildServiceProvider()
+                    .GetService<IOptions<FileConfig>>()
+                    .Value;
+            }
+            _fileConfig.CreateDirectory();
+        }
+
+        private void Write(string msg)
+        {
+            var filePath = $"{_fileConfig.Path}/{_fileConfig.FileName}";
+            var streamWriter = File.AppendText(filePath);
+            streamWriter.WriteLine(msg);
+            streamWriter.Close();
         }
 
     }

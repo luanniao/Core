@@ -11,29 +11,29 @@ namespace LuanNiao.Service.Grapher
             {
                 return;
             }
-            if (handler.GetOutPutSetting(eventData.Level, out var outputSetting))
+            if (handler.OutPutsSettings.TryGetValue(eventData.Level, out var outputSetting))
             {
-                if (outputSetting.HasFlag(GrapherOutput.Console))
+                switch (outputSetting)
                 {
-                    WriteToConsole(handler, eventData);
-                }
-                else if (outputSetting.HasFlag(GrapherOutput.File))
-                {
-                    WriteToFile(handler, eventData);
-                }
-                else if (outputSetting.HasFlag(GrapherOutput.Sqlite))
-                {
-                    WriteToDB(handler, eventData);
-                }
-                else
-                {
-                    TextWriter?.WriteLine(MessageBuilder(handler, eventData));
+                    case GrapherOutput.Console:
+                        WriteToConsole(handler, eventData);
+                        break;
+                    case GrapherOutput.File:
+                        FileWritter(handler, eventData);
+                        break;
+                    case GrapherOutput.Sqlite:
+                        WriteToDB(handler, eventData);
+                        break;
+                    default:
+                        break;
                 }
             }
             else
             {
-                TextWriter?.WriteLine(MessageBuilder(handler, eventData));
+                TextWriter.WriteLine(MessageBuilder(handler, eventData));
             }
         }
+
+       
     }
 }

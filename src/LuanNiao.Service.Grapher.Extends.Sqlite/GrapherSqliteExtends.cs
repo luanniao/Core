@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace LuanNiao.Service.Grapher.Extends.Sqlite
 {
@@ -20,8 +19,8 @@ namespace LuanNiao.Service.Grapher.Extends.Sqlite
                 }
             }
         }
-        public static event Action<int, int, long, string, string[], string, string, string, string, List<string>> OnWritten;
-        internal static void Written(int keyID, int eventID, long tickets, string level, string[] keywords, string message, string op, string activityId, string relatedActivityId, List<string> customPayLoad)
+        public static event Action<int, int, long, string, string[], string, string, string, string, string> OnWritten;
+        internal static void Written(int keyID, int eventID, long tickets, string level, string[] keywords, string message, string op, string activityId, string relatedActivityId, string customPayLoad)
         {
             OnWritten?.Invoke(keyID, eventID, tickets, level, keywords, message, op, activityId, relatedActivityId, customPayLoad);
         }

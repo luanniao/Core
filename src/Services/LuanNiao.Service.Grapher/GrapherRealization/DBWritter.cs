@@ -10,46 +10,21 @@ namespace LuanNiao.Service.Grapher
 {
     public sealed partial class Grapher
     {
-
-        private class DBRecordItem
-        {
-            public int EventID { get; set; }
-            public long Tickets { get; set; }
-            public string Level { get; set; }
-            public string[] Keywords { get; set; }
-            public string Message { get; set; }
-            public string Op { get; set; }
-            public string ActivityId { get; set; }
-            public string RelatedActivityId { get; set; }
-            public List<string> CustomPayLoad { get; set; }
-        }
-
-        private readonly ConcurrentQueue<DBRecordItem> _dbWriterQueue = new ConcurrentQueue<DBRecordItem>();
+        private readonly ConcurrentQueue<string> _dbWriterQueue = new ConcurrentQueue<string>();
         private void WriteToDB(GrapherOptions options, EventWrittenEventArgs data)
         {
-            var customPayload = new List<string>();
-            foreach (var item in data.Payload)
-            {
-                customPayload.Add(item.ToString());
-            }
             if (options.AsyncSettings.TryGetValue(data.Level, out var isAsync) && isAsync)
             {
-                _dbWriterQueue.Enqueue(new DBRecordItem()
-                {
-                    EventID = data.EventId,
-                    Tickets = data.TimeStamp.Ticks,
-                    Level = Enum.GetName(typeof(EventLevel), data.Level),
-                    Keywords = GetKeywords(options, data).ToArray(),
-                    Message = data.Message,
-                    Op = Enum.GetName(typeof(EventOpcode), data.Opcode),
-                    ActivityId = data.ActivityId.ToString(),
-                    RelatedActivityId = data.RelatedActivityId.ToString(),
-                    CustomPayLoad = customPayload,
-                });
+                _dbWriterQueue.Enqueue(MessageBuilder(options, data));
                 _dbSemaphore.Release();
             }
             else
             {
+                var customPayload = new List<string>();
+                foreach (var item in data.Payload)
+                {
+                    customPayload.Add(item.ToString());
+                }
                 DBWriter.Write(data.EventId
                     , data.TimeStamp.Ticks
                     , Enum.GetName(typeof(EventLevel), data.Level)
@@ -58,7 +33,7 @@ namespace LuanNiao.Service.Grapher
                     , Enum.GetName(typeof(EventOpcode), data.Opcode)
                     , data.ActivityId.ToString()
                     , data.RelatedActivityId.ToString()
-                    , customPayload);
+                    , customPayload.ToString());
             }
         }
 
@@ -88,17 +63,9 @@ namespace LuanNiao.Service.Grapher
             {
                 while (!_cancellationTokenSource.IsCancellationRequested)
                 {
-                    if (_dbWriterQueue.TryDequeue(out var msg))
+                    if (_consoleWriterQueue.TryDequeue(out var msg))
                     {
-                        DBWriter.Write(msg.EventID
-                                      , msg.Tickets
-                                      , msg.Level
-                                      , msg.Keywords
-                                      , msg.Message
-                                      , msg.Op
-                                      , msg.ActivityId
-                                      , msg.RelatedActivityId
-                                      , msg.CustomPayLoad);
+                        TextWriter.WriteLine(msg);
                     }
                     _dbSemaphore.WaitOne();
                 }

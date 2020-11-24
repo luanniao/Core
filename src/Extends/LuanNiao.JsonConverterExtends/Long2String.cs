@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace LuanNiao.JsonConverterExtends
 {
-    public class Long2String : JsonConverter<long>
+    public class Long2StringConverter : JsonConverter<long>
     {
         public override long Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

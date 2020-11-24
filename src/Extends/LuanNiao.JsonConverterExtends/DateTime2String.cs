@@ -6,11 +6,11 @@ using System.Text.Json.Serialization;
 
 namespace LuanNiao.JsonConverterExtends
 {
-    public class DateTime2String : JsonConverter<DateTime>
+    public class DateTime2StringConverter : JsonConverter<DateTime>
     {
 
         private readonly string _format;
-        public DateTime2String(string format)
+        public DateTime2StringConverter(string format)
         {
             _format = format;
         }

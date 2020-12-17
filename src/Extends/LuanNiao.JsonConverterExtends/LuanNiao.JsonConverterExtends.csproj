@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
     <Description>LuanNiao's json extends use to handle  the spectical case in System.Text.Json.

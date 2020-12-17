@@ -13,6 +13,10 @@ namespace Z.LuanNiao.Extends.Test.JsonConverter
         {
             [DateTime2StringAtrribute("yyyy-MM-dd HH:mm:ss")]
             public DateTime D1 { get; set; } = DateTime.Now;
+            [DateTime2StringAtrribute("yyyy-MM-dd HH:mm:ss")]
+            public DateTime? D2 { get; set; } = DateTime.Now;
+            [DateTime2StringAtrribute("yyyy-MM-dd HH:mm:ss")]
+            public DateTime? D3 { get; set; }
         }
 
 
@@ -22,6 +26,8 @@ namespace Z.LuanNiao.Extends.Test.JsonConverter
             var x = new DateTimeTest();
             var info = System.Text.Json.JsonSerializer.Serialize(x);
             Assert.NotNull(info);
+            var data=System.Text.Json.JsonSerializer.Deserialize<DateTimeTest>(info);
+            Assert.NotNull(data);
         }
     }
 }

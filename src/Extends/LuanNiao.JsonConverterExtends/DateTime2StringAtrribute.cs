@@ -15,11 +15,25 @@ namespace LuanNiao.JsonConverterExtends
 
         public override JsonConverter CreateConverter(Type typeToConvert)
         {
-            if (typeToConvert != typeof(DateTime))
+
+            if (typeToConvert != typeof(DateTime) && typeToConvert != typeof(DateTime?))
             {
-                throw new InvalidOperationException($"{nameof(DateTime2StringAtrribute)} just can use to type:{typeof(DateTime)}");
+                throw new InvalidOperationException($"{nameof(DateTime2StringAtrribute)} just can use to type:{typeof(DateTime)} or type:{typeof(DateTime?)}");
             }
-            return new DateTime2StringConverter(_format);
+
+            if (typeToConvert == typeof(DateTime))
+            {
+                return new DateTime2StringConverter(_format);
+            }
+            else if (typeToConvert == typeof(DateTime?))
+            {
+                return new NullableDateTime2StringConverter(_format);
+            }
+            else
+            {
+                throw new InvalidOperationException($"{nameof(DateTime2StringAtrribute)} just can use to type:{typeof(DateTime)} or type:{typeof(DateTime?)}");
+            }
+
         }
 
     }

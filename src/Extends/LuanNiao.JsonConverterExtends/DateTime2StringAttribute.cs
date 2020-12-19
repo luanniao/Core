@@ -5,10 +5,10 @@ using System.Text.Json.Serialization;
 
 namespace LuanNiao.JsonConverterExtends
 {
-    public class DateTime2StringAtrribute : JsonConverterAttribute
+    public class DateTime2StringAttribute : JsonConverterAttribute
     {
         private readonly string _format;
-        public DateTime2StringAtrribute(string format = "yyyy-MM-dd")
+        public DateTime2StringAttribute(string format = "yyyy-MM-dd")
         {
             _format = format;
         }
@@ -18,7 +18,7 @@ namespace LuanNiao.JsonConverterExtends
 
             if (typeToConvert != typeof(DateTime) && typeToConvert != typeof(DateTime?))
             {
-                throw new InvalidOperationException($"{nameof(DateTime2StringAtrribute)} just can use to type:{typeof(DateTime)} or type:{typeof(DateTime?)}");
+                throw new InvalidOperationException($"{nameof(DateTime2StringAttribute)} just can use to type:{typeof(DateTime)} or type:{typeof(DateTime?)}");
             }
 
             if (typeToConvert == typeof(DateTime))
@@ -31,7 +31,7 @@ namespace LuanNiao.JsonConverterExtends
             }
             else
             {
-                throw new InvalidOperationException($"{nameof(DateTime2StringAtrribute)} just can use to type:{typeof(DateTime)} or type:{typeof(DateTime?)}");
+                throw new InvalidOperationException($"{nameof(DateTime2StringAttribute)} just can use to type:{typeof(DateTime)} or type:{typeof(DateTime?)}");
             }
 
         }

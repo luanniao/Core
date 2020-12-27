@@ -66,6 +66,10 @@ namespace LuanNiao.Core.NetTools
         /// <returns></returns>
         public static IPAddress GetBroadcastAddress(IPAddress address, IPAddress mask)
         {
+            if (address == null || mask == null)
+            {
+                throw new InvalidOperationException();
+            }
             uint ipAddress = BitConverter.ToUInt32(address.GetAddressBytes(), 0);
             uint ipMaskV4 = BitConverter.ToUInt32(mask.GetAddressBytes(), 0);
             uint broadCastIpAddress = ipAddress | ~ipMaskV4;

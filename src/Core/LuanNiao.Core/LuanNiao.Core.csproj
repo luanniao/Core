@@ -2,21 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
     <Product>LuanNiao</Product>
-    <Description>
-      We create this project case we need some base operation in the project.
-      If you want to use the LuanNiao's other package, maybe you must dependent this package.
-      You can see the detail info from the github page.
-    </Description>
+    <Description>.Net5 Version
+We create this project case we need some base operation in the project.
+If you want to use the LuanNiao's other package, maybe you must dependent this package.
+You can see the detail info from the github page.
+</Description>
     <Copyright>Copyright 2020 LuanNiao.Club</Copyright>
     <PackageProjectUrl>https://github.com/luanniao/Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/luanniao/Core</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>.netcore UnionType LuanNiao Tools</PackageTags>
-    <PackageReleaseNotes>You can see the detail info from the github page.</PackageReleaseNotes>
+    <PackageReleaseNotes>.NET5 version. And it is no dependent version</PackageReleaseNotes>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
     <PackageIcon>luanniao.jpg</PackageIcon>

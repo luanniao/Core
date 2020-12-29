@@ -99,7 +99,7 @@ namespace LuanNiao.Core.StructUtilTools
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
         /// <returns></returns>
-        public static int CoypDataTo<T>(in T t, in Span<byte> buffer) where T : struct
+        public static int CopyDataTo<T>(in T t, in Span<byte> buffer) where T : struct
         {
             byte[] data = new byte[Marshal.SizeOf<T>()];
 

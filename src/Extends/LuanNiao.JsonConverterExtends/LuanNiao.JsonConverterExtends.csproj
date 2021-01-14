@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>1.0.5</Version>
+    <Version>1.0.8</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
     <Description>.NET 5Version
@@ -10,17 +10,13 @@ LuanNiao's json extends use to handle  the spectical case in System.Text.Json.
 Example:
 Js not support the full long type( if your number's length more than 20, you will got the error result)
 Then you can use Long2String to fix this case.</Description>
-    <Copyright>Copyright 2020 LuanNiao.Club</Copyright>
+    <Copyright>Copyright 2021 LuanNiao.Club</Copyright>
     <PackageProjectUrl>https://github.com/luanniao/Core</PackageProjectUrl>
     <PackageIcon>luanniao.jpg</PackageIcon>
     <RepositoryUrl>https://github.com/luanniao/Core</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>.netcore UnionType LuanNiao Tools Json Extends</PackageTags>
-    <PackageReleaseNotes>.NET 5Version
-1.DateTime2String
-2.Long2String
-3.DateTime2StringAttribute
-</PackageReleaseNotes>
+    <PackageReleaseNotes>add json options static variable</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +24,10 @@ Then you can use Long2String to fix this case.</Description>
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\LuanNiao.Core\LuanNiao.Core.csproj" />
   </ItemGroup>
 
 </Project>

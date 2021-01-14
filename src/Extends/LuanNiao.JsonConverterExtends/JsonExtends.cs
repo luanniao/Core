@@ -9,13 +9,26 @@ using static LuanNiao.JsonConverterExtends.Constants;
 namespace LuanNiao.JsonConverterExtends
 {
     public interface IUseLNJsonExtends { }
+    public enum JsonCompressLevel
+    {
+        None = 0,
+        Normal = 1,
+        High = 2
+    }
+    /*
+        |             Method |         Mean |       Error |      StdDev |  Gen 0 | Gen 1 | Gen 2 | Allocated |
+        |------------------- |-------------:|------------:|------------:|-------:|------:|------:|----------:|
+        |   TestHighCompress | 699,485.9 ns | 2,587.15 ns | 2,293.44 ns |      - |     - |     - |     976 B |
+        | TestNormalCompress |   4,744.4 ns |    31.86 ns |    28.24 ns | 0.1526 |     - |     - |     984 B |
+        |   TestNoneCompress |     484.3 ns |     5.86 ns |     5.48 ns | 0.0629 |     - |     - |     400 B |
+     */
     public static class JsonExtends
     {
         private static JsonSerializerOptions GetOptions(bool camelCase = true, bool withChinese = true, bool nameCaseInsensitive = true)
         {
 
             JsonSerializerOptions options = null;
-            if (camelCase && withChinese&&nameCaseInsensitive)
+            if (camelCase && withChinese && nameCaseInsensitive)
             {
                 options = CamelCaseChineseNameCaseInsensitive;
             }
@@ -38,42 +51,32 @@ namespace LuanNiao.JsonConverterExtends
             else if (camelCase && withChinese && !nameCaseInsensitive)
             {
                 options = CamelCaseChinese;
-            } 
+            }
             return options;
         }
-        public static byte[] GetBytesWithCompress<T>(this T target, bool camelCase = true, bool withChinese = true, bool nameCaseInsensitive = true) where T : class, IUseLNJsonExtends
+
+
+        public static byte[] GetBytes<T>(this T target, JsonCompressLevel compress = JsonCompressLevel.None, bool camelCase = true, bool withChinese = true, bool nameCaseInsensitive = true, JsonSerializerOptions options = null) where T : class, IUseLNJsonExtends
         {
             if (target == null)
             {
                 return null;
             }
-            return GetBytesWithCompress(target, GetOptions(camelCase, withChinese, nameCaseInsensitive));
-        }
-
-
-        public static byte[] GetBytesWithHightLevelCompress<T>(this T target, bool camelCase = true, bool withChinese = true, bool nameCaseInsensitive = true) where T : class, IUseLNJsonExtends
-        {
-            if (target == null)
+            if (options==null)
             {
-                return null;
+                options = GetOptions(camelCase, withChinese, nameCaseInsensitive);
             }
-            return GetBytesWithHightLevelCompress(target, GetOptions(camelCase, withChinese, nameCaseInsensitive));
-        }
-
-
-
-
-        public static byte[] GetBytesWithCompress<T>(this T target, JsonSerializerOptions options) where T : class, IUseLNJsonExtends
-        {
-            return Core.TextTools.BrotliUTF8.Compress(JsonSerializer.Serialize(target, options));
-        }
-        public static byte[] GetBytesWithHightLevelCompress<T>(this T target, JsonSerializerOptions options) where T : class, IUseLNJsonExtends
-        {
-            return Core.TextTools.BrotliUTF8.CompressHightLevel(JsonSerializer.Serialize(target, options));
-        }
-
-
-
+            switch (compress)
+            {
+                case JsonCompressLevel.Normal:
+                    return Core.TextTools.BrotliUTF8.Compress(JsonSerializer.Serialize(target, options));
+                case JsonCompressLevel.High:
+                    return Core.TextTools.BrotliUTF8.CompressHightLevel(JsonSerializer.Serialize(target, options));
+                case JsonCompressLevel.None:
+                default:
+                    return Encoding.UTF8.GetBytes(JsonSerializer.Serialize(target, options));
+            }
+        } 
 
 
 
@@ -82,9 +85,9 @@ namespace LuanNiao.JsonConverterExtends
             if (source == null)
             {
                 return null;
-            } 
+            }
 
-            return JsonSerializer.Deserialize<T>(Core.TextTools.BrotliUTF8.GetString(source), GetOptions(camelCase,withChinese,nameCaseInsensitive));
+            return JsonSerializer.Deserialize<T>(Core.TextTools.BrotliUTF8.GetString(source), GetOptions(camelCase, withChinese, nameCaseInsensitive));
         }
     }
 }

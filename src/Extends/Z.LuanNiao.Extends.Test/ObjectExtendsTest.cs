@@ -21,7 +21,7 @@ namespace Z.LuanNiao.Extends.Test
         [Test]
         public void NormalOperationTest()
         {
-            var json=_test.GetBytesWithCompress();
+            var json=_test.GetBytes(JsonCompressLevel.Normal);
             var obj = json.GetObjectWithCompress<asd>();
             Assert.AreEqual(obj.MyProperty, _test.MyProperty);
             Assert.AreEqual(obj.MyProperty1, _test.MyProperty1);
@@ -29,7 +29,7 @@ namespace Z.LuanNiao.Extends.Test
         [Test]
         public void HighCompressOperationTest()
         {
-            var json = _test.GetBytesWithHightLevelCompress();
+            var json = _test.GetBytes(JsonCompressLevel.High);
             var obj = json.GetObjectWithCompress<asd>();
             Assert.AreEqual(obj.MyProperty, _test.MyProperty);
             Assert.AreEqual(obj.MyProperty1, _test.MyProperty1);

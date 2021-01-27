@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using static LuanNiao.JsonConverterExtends.Constants;
+using static LuanNiao.JsonConverterExtends.CommonSerializerOptions;
 
 namespace LuanNiao.JsonConverterExtends
 {
@@ -80,14 +80,23 @@ namespace LuanNiao.JsonConverterExtends
 
 
 
-        public static T GetObjectWithCompress<T>(this byte[] source, bool camelCase = true, bool withChinese = true, bool nameCaseInsensitive = true) where T : class, IUseLNJsonExtends
+        public static T GetObject<T>(this byte[] source, JsonCompressLevel compress = JsonCompressLevel.None, bool camelCase = true, bool withChinese = true, bool nameCaseInsensitive = true) where T : class, IUseLNJsonExtends
         {
             if (source == null)
             {
                 return null;
             }
-
-            return JsonSerializer.Deserialize<T>(Core.TextTools.BrotliUTF8.GetString(source), GetOptions(camelCase, withChinese, nameCaseInsensitive));
+            switch (compress)
+            {
+                case JsonCompressLevel.High:
+                case JsonCompressLevel.Normal:
+                    return JsonSerializer.Deserialize<T>(Core.TextTools.BrotliUTF8.GetString(source), GetOptions(camelCase, withChinese, nameCaseInsensitive));
+                case JsonCompressLevel.None:
+                default:
+                    return JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(source), GetOptions(camelCase, withChinese, nameCaseInsensitive));
+                    break;
+            }
+            
         }
     }
 }

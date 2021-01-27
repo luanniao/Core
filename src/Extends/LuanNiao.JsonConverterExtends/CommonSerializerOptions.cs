@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LuanNiao.JsonConverterExtends
 {
-    public static class Constants
+    public static class CommonSerializerOptions
     {
         public static readonly JsonSerializerOptions CamelCase = new()
         {

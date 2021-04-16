@@ -9,7 +9,7 @@ namespace LuanNiao.Core
 
         public static bool operator ==(UnionType ut1, UnionType ut2)
         {
-            if (ReferenceEquals(null, ut1) || ReferenceEquals(null, ut2))
+            if (ut1 is null || ut2 is null)
                 return false;
             if (ut1.Value.GetType().IsValueType && ut2.Value.GetType().IsValueType)
             {
@@ -20,11 +20,11 @@ namespace LuanNiao.Core
 
         public static bool operator !=(UnionType ut1, UnionType ut2)
         {
-            if (!ReferenceEquals(null, ut1) && ReferenceEquals(null, ut2))
+            if (ut1 is not null && ut2 is null)
             {
                 return true;
             }
-            else if (ReferenceEquals(null, ut1) && !ReferenceEquals(null, ut2))
+            else if (ut1 is null && ut2 is not null)
             {
                 return true;
             }
@@ -32,11 +32,6 @@ namespace LuanNiao.Core
             {
                 return false;
             }
-            if (ut1.Value.GetType().IsValueType && ut2.Value.GetType().IsValueType)
-            {
-                return ut1.Value.GetHashCode() != ut2.Value.GetHashCode();
-            }
-            return ut1.Value != ut2.Value;
         }
         public bool Is(Type t) => Value.GetType() == t;
 
@@ -46,7 +41,7 @@ namespace LuanNiao.Core
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
+            if (obj is null)
                 return false;
 
             if (obj is UnionType ut)

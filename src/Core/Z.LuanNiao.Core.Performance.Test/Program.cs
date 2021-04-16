@@ -6,11 +6,13 @@ namespace Z.LuanNiao.Core.Performance.Test
 {
     internal class Program
     {
-        private static void Main(string[] _)
+        private static void Main()
         {
             //BenchmarkRunner.Run<CRC16Test>();
             //BenchmarkRunner.Run<SourceQueueTest>();
-            BenchmarkRunner.Run<IDGenTest>();
+            {
+                _ = BenchmarkRunner.Run<IDGenTest>();
+            }
         }
     }
 }

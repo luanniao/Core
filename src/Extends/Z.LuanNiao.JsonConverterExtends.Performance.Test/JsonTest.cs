@@ -26,7 +26,7 @@ namespace Z.LuanNiao.JsonConverterExtends.Performance.Test
         [Benchmark]
         public void TestHighCompress()
         {
-            _target.GetBytes(JsonCompressLevel.High);
+            _ = _target.GetBytes(JsonCompressLevel.High);
         }
         [Benchmark]
         public void TestNormalCompress()

@@ -12,7 +12,7 @@ namespace Z.LuanNiao.Core.Performance.Test
         [Benchmark]
         public void CreateID()
         {
-            IDGen.GetInstance().NextId();
+            _ = IDGen.GetInstance().NextId();
         }
     }
 }

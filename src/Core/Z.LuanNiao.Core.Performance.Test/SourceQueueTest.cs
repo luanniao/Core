@@ -22,13 +22,13 @@ namespace Z.LuanNiao.Core.Performance.Test
         [Benchmark]
         public void PushItem()
         {
-            ResourceQueue.Instance().PushItem(new DefaultResourceItem());
+            _ = ResourceQueue.Instance().PushItem(new DefaultResourceItem());
         }
 
         [Benchmark]
         public void DeQUEUE()
         {
-            ResourceQueue.Instance().PushItem(new DefaultResourceItem());
+            _ = ResourceQueue.Instance().PushItem(new DefaultResourceItem());
             ResourceQueue.Instance().Fetch<DefaultResourceItem>(item =>
             {
 
@@ -45,7 +45,7 @@ namespace Z.LuanNiao.Core.Performance.Test
         {
             for (int i = 0; i < 100_000; i++)
             {
-                ResourceQueue.Instance().PushItem(new DefaultResourceItem());
+                _ = ResourceQueue.Instance().PushItem(new DefaultResourceItem());
             }
             for (int i = 0; i < 100_000; i++)
             {

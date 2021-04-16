@@ -17,14 +17,14 @@ namespace Z.LuanNiao.Core.Performance.Test
             StringBuilder sb = new StringBuilder();
             while (sb.Length < UInt16.MaxValue)
             {
-                sb.Append(Guid.NewGuid().ToString());
+                _ = sb.Append(Guid.NewGuid().ToString());
             }
             TestData = Encoding.UTF8.GetBytes(sb.ToString());
         }
         [Benchmark]
         public void CalcData()
         {
-            CRC16IBM.GetCRC16(TestData);
+            _ = CRC16IBM.GetCRC16(TestData);
         }
 
     }

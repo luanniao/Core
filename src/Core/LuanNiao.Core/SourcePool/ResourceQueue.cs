@@ -36,14 +36,14 @@ namespace LuanNiao.Core.SourcePool
                 return;
             }
             _disposed = true;
-            _instance.Remove(this._queueName, out var _);
+            _ = _instance.Remove(this._queueName, out _);
             _items.Writer.Complete();
             if (flage)
             {
                 this._queueName = null;
             }
             GC.Collect();
-            GC.WaitForFullGCComplete();
+            _ = GC.WaitForFullGCComplete();
         }
         public void Dispose()
         {
@@ -71,7 +71,7 @@ namespace LuanNiao.Core.SourcePool
         {
             item.LastTriggerTime = item.Created = DateTime.Now.Ticks;
             item.TotalTriggerTimes = 0;
-            _items.Writer.WriteAsync(item);
+            _ = _items.Writer.WriteAsync(item);
 
             return true;
         }

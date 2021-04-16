@@ -31,13 +31,13 @@ namespace Z.LuanNiao.JsonConverterExtends.Performance.Test
         [Benchmark]
         public void TestNormalCompress()
         {
-            _target.GetBytes(JsonCompressLevel.Normal);
+            _ = _target.GetBytes(JsonCompressLevel.Normal);
         }
 
         [Benchmark]
         public void TestNoneCompress()
         {
-            _target.GetBytes(JsonCompressLevel.None);
+            _ = _target.GetBytes(JsonCompressLevel.None);
         }
     }
 }

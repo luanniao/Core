@@ -38,10 +38,10 @@ namespace Z.LuanNiao.Extends.Test
         [Test]
         public void OptionsTest()
         {
-            var json = System.Text.Json.JsonSerializer.Serialize(_test, CamelCase);
-            var json1 = System.Text.Json.JsonSerializer.Serialize(_test, CamelCaseChinese);
-            var json2 = System.Text.Json.JsonSerializer.Serialize(_test, ChineseOptions);
-            var json3 = System.Text.Json.JsonSerializer.Serialize(_test);
+            _ = System.Text.Json.JsonSerializer.Serialize(_test, CamelCase);
+            _ = System.Text.Json.JsonSerializer.Serialize(_test, CamelCaseChinese);
+            _ = System.Text.Json.JsonSerializer.Serialize(_test, ChineseOptions);
+            _ = System.Text.Json.JsonSerializer.Serialize(_test);
         }
 
         [Test]

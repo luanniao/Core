@@ -94,7 +94,6 @@ namespace LuanNiao.JsonConverterExtends
                 case JsonCompressLevel.None:
                 default:
                     return JsonSerializer.Deserialize<T>(Encoding.UTF8.GetString(source), GetOptions(camelCase, withChinese, nameCaseInsensitive));
-                    break;
             }
             
         }

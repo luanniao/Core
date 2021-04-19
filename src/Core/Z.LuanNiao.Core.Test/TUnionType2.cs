@@ -45,10 +45,8 @@ namespace Z.LuanNiao.Core.Test
 
         [Test]
         public void TestSetDiffTypeValue()
-        {
-            UnionType<int, string> _testInstance = 1;
-            _testInstance = 2;
-            _testInstance = "s";
+        { 
+            UnionType<int, string> _testInstance = "s";
             Assert.AreNotEqual(_testInstance.Value, 2);
         }
 

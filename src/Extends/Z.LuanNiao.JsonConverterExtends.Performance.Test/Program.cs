@@ -7,7 +7,7 @@ namespace Z.LuanNiao.JsonConverterExtends.Performance.Test
     {
         public static void Main(string[] _)
         {
-            BenchmarkRunner.Run<JsonTest>();
+            _ = BenchmarkRunner.Run<JsonTest>();
         }
     }
 }

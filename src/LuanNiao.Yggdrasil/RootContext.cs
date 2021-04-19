@@ -2,7 +2,7 @@
 
 namespace LuanNiao.Yggdrasil
 {
-    public class Class1
+    public class RootContext
     {
     }
 }

@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0059:不需要赋值", Justification = "<挂起>", Scope = "member", Target = "~M:Z.LuanNiao.Core.Test.TUnionType3.Setup")]
+[assembly: SuppressMessage("Style", "IDE0059:不需要赋值", Justification = "<挂起>", Scope = "member", Target = "~M:Z.LuanNiao.Core.Test.TUnionType3.TestSetDiffTypeValue")]

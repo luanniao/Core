@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace LuanNiao.Core.StructUtilTools
 {
     /// <summary>
     /// struct type tools 
     /// </summary>
+    [Obsolete("Dot net api has all operation, use MemoryMarshal ")]
     public static class StructUtilTools
     {
 

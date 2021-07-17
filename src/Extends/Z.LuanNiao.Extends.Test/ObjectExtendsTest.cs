@@ -1,11 +1,12 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Text;
-using System.Threading.Tasks;
-using static LuanNiao.JsonConverterExtends.CommonSerializerOptions;
+using System.Text.Json;
+
 using LuanNiao.JsonConverterExtends;
+
+using NUnit.Framework;
+
+using static LuanNiao.JsonConverterExtends.CommonSerializerOptions;
 
 namespace Z.LuanNiao.Extends.Test
 {
@@ -16,6 +17,8 @@ namespace Z.LuanNiao.Extends.Test
         {
             public string MyProperty { get; set; } = "zxczxc";
             public string MyProperty1 { get; set; } = "z请问恶趣味恶趣味adasdsa@#!@#";
+            [TimeSpan2String]
+            public TimeSpan T1 { get; set; }
         }
         private readonly asd _test = new asd();
         [Test]
@@ -53,5 +56,14 @@ namespace Z.LuanNiao.Extends.Test
             Assert.AreEqual(obj.MyProperty1, _test.MyProperty1);
         }
 
+        [Test]
+        public void TimeSpanTest()
+        {
+            asd t = new asd();
+            t.T1 = new TimeSpan(1, 2, 3);
+            var tt = JsonSerializer.Serialize(t);
+            var t2 = JsonSerializer.Deserialize<asd>(tt);
+
+        }
     }
 }

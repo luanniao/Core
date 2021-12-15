@@ -1,17 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Version>2.0.1</Version>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>3.0.1</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
     <Product>LuanNiao</Product>
-    <Description>.Net5 Version
-We create this project case we need some base operation in the project.
-If you want to use the LuanNiao's other package, maybe you must dependent this package.
-You can see the detail info from the github page.
-</Description>
-    <Copyright>Copyright 2020 LuanNiao.Club</Copyright>
+    <Description>.Net6 Version</Description>
+    <Copyright>Copyright 2021 LuanNiao.Club</Copyright>
     <PackageProjectUrl>https://github.com/luanniao/Core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/luanniao/Core</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>

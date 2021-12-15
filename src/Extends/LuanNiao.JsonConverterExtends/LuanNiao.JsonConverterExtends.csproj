@@ -1,15 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Version>1.2.0</Version>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>2.0.0</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
-    <Description>.NET 5Version
-LuanNiao's json extends use to handle  the spectical case in System.Text.Json.
-Example:
-Js not support the full long type( if your number's length more than 20, you will got the error result)
-Then you can use Long2String to fix this case.</Description>
+    <Description>.Net6 Version</Description>
     <Copyright>Copyright 2021 LuanNiao.Club</Copyright>
     <PackageProjectUrl>https://github.com/luanniao/Core</PackageProjectUrl>
     <PackageIcon>luanniao.jpg</PackageIcon>

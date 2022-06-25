@@ -4,6 +4,11 @@ using System.Text;
 
 namespace LuanNiao.Core
 {
+    /// <summary>
+    /// union type
+    /// </summary>
+    /// <typeparam name="T1"></typeparam>
+    /// <typeparam name="T2"></typeparam>
     public class UnionType<T1, T2> : UnionType
     {
         private readonly T1 _v1;
@@ -24,9 +29,24 @@ namespace LuanNiao.Core
             _whichOne = 2;
         }
 
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2>(T2 t) => new UnionType<T1, T2>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2>(T1 t) => new UnionType<T1, T2>(t);
 
+        /// <summary>
+        /// switch two value
+        /// </summary>
+        /// <param name="action1"></param>
+        /// <param name="action2"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public UnionType<T1, T2> Switch(Action<T1> action1, Action<T2> action2)
         {
             if (action1 == null || action2 == null)
@@ -60,8 +80,15 @@ namespace LuanNiao.Core
             }
         }
 
-        
+        /// <summary>
+        /// get first data value
+        /// </summary>
+        /// <returns></returns>
         public T1 V1() => _v1;
+        /// <summary>
+        /// get second data value
+        /// </summary>
+        /// <returns></returns>
         public T2 V2() => _v2;
 
     }

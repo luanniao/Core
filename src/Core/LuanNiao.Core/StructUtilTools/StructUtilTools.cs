@@ -97,6 +97,7 @@ namespace LuanNiao.Core.StructUtilTools
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
+        /// <param name="buffer">data buffer</param>
         /// <returns></returns>
         public static int CopyDataTo<T>(in T t, in Span<byte> buffer) where T : struct
         {

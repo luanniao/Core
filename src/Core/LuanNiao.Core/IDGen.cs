@@ -5,7 +5,7 @@ using System.Text;
 namespace LuanNiao.Core
 {
     /// <summary>
-    /// this IDGen use twitter's  algorithm ---> snowflake like
+    /// this IDGen use snowflake
     /// </summary>
     public class IDGen
     {
@@ -50,6 +50,19 @@ namespace LuanNiao.Core
             }
         }
 
+        /// <summary>
+        /// set this process's id gen work and datacenter 
+        ///  ensure that this method invoked before all the calls 
+        ///  otherwise it's not work
+        /// </summary>
+        public static void Init(long workerID, long datacenter)
+        {
+            if (_iDWorker == null)
+            {
+                _iDWorker = new IDGen(workerID, datacenter);
+            }
+        }
+
         public static IDGen GetInstance(long workerID = 12L, long datacenter = 12L)
         {
             if (_iDWorker == null)
@@ -73,7 +86,7 @@ namespace LuanNiao.Core
         public virtual long NextId()
         {
             lock (_lock)
-            { 
+            {
                 var timestamp = TimeGen();
 
                 if (timestamp < _lastTimestamp)

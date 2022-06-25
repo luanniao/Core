@@ -28,6 +28,11 @@ namespace LuanNiao.Core.NetTools
 0x8D01, 0x4DC0, 0x4C80, 0x8C41, 0x4400, 0x84C1, 0x8581, 0x4540, 0x8701, 0x47C0, 0x4680, 0x8641, 0x8201, 0x42C0, 0x4380, 0x8341,
 0x4100, 0x81C1, 0x8081, 0x4040};
 
+        /// <summary>
+        /// get crc 16
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static byte[] GetCRC16(Span<byte> data)
         {
             UInt16 crc = 0x0000;
@@ -38,6 +43,13 @@ namespace LuanNiao.Core.NetTools
             return BitConverter.GetBytes(crc);
         }
 
+        /// <summary>
+        /// set crc 16
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="beginIndex"></param>
+        /// <param name="endIndex"></param>
+        /// <param name="crcIndex"></param>
         public static void SetCRC16(Span<byte> source, int beginIndex, int endIndex, int crcIndex)
         {
             UInt16 crc = 0x0000;

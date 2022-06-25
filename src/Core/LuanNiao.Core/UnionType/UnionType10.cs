@@ -4,6 +4,19 @@ using System.Text;
 
 namespace LuanNiao.Core
 {
+    /// <summary>
+    /// UnionType  
+    /// </summary>
+    /// <typeparam name="T1"></typeparam>
+    /// <typeparam name="T2"></typeparam>
+    /// <typeparam name="T3"></typeparam>
+    /// <typeparam name="T4"></typeparam>
+    /// <typeparam name="T5"></typeparam>
+    /// <typeparam name="T6"></typeparam>
+    /// <typeparam name="T7"></typeparam>
+    /// <typeparam name="T8"></typeparam>
+    /// <typeparam name="T9"></typeparam>
+    /// <typeparam name="T10"></typeparam>
     public class UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> : UnionType
     {
         private readonly T1 _v1;
@@ -20,6 +33,9 @@ namespace LuanNiao.Core
 
         private readonly int _whichOne;
 
+        /// <summary>
+        /// get raw value
+        /// </summary>
         public override object Value => GetData();
 
         private UnionType(T1 data)
@@ -72,17 +88,72 @@ namespace LuanNiao.Core
             _v10 = data;
             _whichOne = 10;
         }
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T1 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T2 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T3 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T4 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T5 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T6 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T7 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T8 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T9 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T10 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
 
+        /// <summary>
+        /// construct method
+        /// </summary>
+        /// <param name="action1"></param>
+        /// <param name="action2"></param>
+        /// <param name="action3"></param>
+        /// <param name="action4"></param>
+        /// <param name="action5"></param>
+        /// <param name="action6"></param>
+        /// <param name="action7"></param>
+        /// <param name="action8"></param>
+        /// <param name="action9"></param>
+        /// <param name="action10"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> Switch(Action<T1> action1, Action<T2> action2, Action<T3> action3, Action<T4> action4, Action<T5> action5, Action<T6> action6, Action<T7> action7, Action<T8> action8, Action<T9> action9, Action<T10> action10)
         {
             if (action1 == null || action2 == null || action3 == null || action4 == null || action5 == null || action6 == null || action7 == null || action8 == null || action9 == null || action10 == null)
@@ -158,15 +229,55 @@ namespace LuanNiao.Core
         }
 
 
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T1 V1() => _v1;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T2 V2() => _v2;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T3 V3() => _v3;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T4 V4() => _v4;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T5 V5() => _v5;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T6 V6() => _v6;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T7 V7() => _v7;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T8 V8() => _v8;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T9 V9() => _v9;
+        /// <summary>
+        /// helper method
+        /// </summary>
+        /// <param name="t"></param>
         public T10 V10() => _v10;
 
 

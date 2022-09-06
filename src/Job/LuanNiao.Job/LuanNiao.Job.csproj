@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LogService\LuanNiao.Logger\LuanNiao.Logger.csproj" />
     <ProjectReference Include="..\..\Yggdrasil\LuanNiao.Yggdrasil\LuanNiao.Yggdrasil.csproj" />
   </ItemGroup>
 

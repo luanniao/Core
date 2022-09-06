@@ -4,4 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Cache\LuanNiao.Cache\LuanNiao.Cache.csproj" />
+    <ProjectReference Include="..\..\Core\LuanNiao.Core\LuanNiao.Core.csproj" />
+    <ProjectReference Include="..\..\Extends\LuanNiao.JsonConverterExtends\LuanNiao.JsonConverterExtends.csproj" />
+    <ProjectReference Include="..\..\LogService\LuanNiao.Logger\LuanNiao.Logger.csproj" />
+    <ProjectReference Include="..\..\MQ\LuanNiao.MQ.RabbitMQ\LuanNiao.MQ.RabbitMQ.csproj" />
+  </ItemGroup>
+
 </Project>

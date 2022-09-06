@@ -1,4 +1,6 @@
-﻿namespace LuanNiao.Job
+﻿using System;
+
+namespace LuanNiao.Yggdrasil.Attributes
 {
 
     /// <summary>

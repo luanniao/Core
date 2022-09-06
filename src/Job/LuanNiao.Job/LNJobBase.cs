@@ -1,5 +1,6 @@
 ﻿using LuanNiao.Logger.AbsInfos;
 using LuanNiao.Yggdrasil;
+using LuanNiao.Yggdrasil.Attributes;
 
 namespace LuanNiao.Job
 {

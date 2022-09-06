@@ -2,7 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreeSql" Version="3.2.668" />
+    <PackageReference Include="FreeSql.Provider.MySql" Version="3.2.668" />
+    <PackageReference Include="FreeSql.Provider.SqliteCore" Version="3.2.668" />
+    <PackageReference Include="FreeSql.Provider.SqlServer" Version="3.2.668" />
+    <PackageReference Include="IdleBus" Version="1.5.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Cache\LuanNiao.Cache\LuanNiao.Cache.csproj" />

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LuanNiao.Core
 {
@@ -15,6 +13,10 @@ namespace LuanNiao.Core
         private readonly T2 _v2;
         private readonly int _whichOne;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override object Value => GetData();
 
 

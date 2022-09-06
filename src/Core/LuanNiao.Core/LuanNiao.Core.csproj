@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>3.0.2</Version>
+    <Version>4.0.3</Version>
     <Authors>BenLampson</Authors>
     <Company>LuanNiao</Company>
     <Product>LuanNiao</Product>

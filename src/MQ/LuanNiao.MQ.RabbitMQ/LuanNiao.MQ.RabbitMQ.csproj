@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LogService\LuanNiao.Logger\LuanNiao.Logger.csproj" />
+    <ProjectReference Include="..\..\LogService\LuanNiao.Logger\LuanNiao.Logger.csproj" />
   </ItemGroup>
 
 </Project>

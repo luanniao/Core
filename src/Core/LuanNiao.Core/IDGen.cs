@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LuanNiao.Core
 {
@@ -10,7 +8,7 @@ namespace LuanNiao.Core
     public class IDGen
     {
         private static IDGen _iDWorker = null;
-        public const long Twepoch = 1288834974657L;
+        private const long _twepoch = 1288834974657L;
 
         private const int _workerIdBits = 5;
 
@@ -24,7 +22,7 @@ namespace LuanNiao.Core
         private const int _workerIdShift = _sequenceBits;
         private const int _datacenterIdShift = _sequenceBits + _workerIdBits;
 
-        public const int TimestampLeftShift = _sequenceBits + _workerIdBits + _datacenterIdBits;
+        private const int _timestampLeftShift = _sequenceBits + _workerIdBits + _datacenterIdBits;
 
         private const long _sequenceMask = -1L ^ (-1L << _sequenceBits);
 
@@ -63,26 +61,24 @@ namespace LuanNiao.Core
             }
         }
 
-        public static IDGen GetInstance(long workerID = 12L, long datacenter = 12L)
-        {
-            if (_iDWorker == null)
-            {
-                _iDWorker = new IDGen(workerID, datacenter);
-            }
-            return _iDWorker;
-        }
 
-        public long WorkerId { get; protected set; }
-        public long DatacenterId { get; protected set; }
+        /// <summary>
+        /// IDGenInstance if you not init, it was null ptr
+        /// </summary>
+        public static IDGen Instance = _iDWorker;
 
-        public long Sequence
-        {
-            get { return _sequence; }
-            internal set { _sequence = value; }
-        }
+        private long WorkerId { get; set; }
+        private long DatacenterId { get; set; }
 
 
-        private readonly object _lock = new Object();
+
+
+        private readonly object _lock = new();
+        /// <summary>
+        /// get the nex id
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public virtual long NextId()
         {
             lock (_lock)
@@ -109,7 +105,7 @@ namespace LuanNiao.Core
                 }
 
                 _lastTimestamp = timestamp;
-                var id = ((timestamp - Twepoch) << TimestampLeftShift) |
+                var id = ((timestamp - _twepoch) << _timestampLeftShift) |
                          (DatacenterId << _datacenterIdShift) |
                          (WorkerId << _workerIdShift) | _sequence;
 
@@ -117,7 +113,7 @@ namespace LuanNiao.Core
             }
         }
 
-        protected virtual long TilNextMillis(long lastTimestamp)
+        private static long TilNextMillis(long lastTimestamp)
         {
             var timestamp = TimeGen();
             while (timestamp <= lastTimestamp)
@@ -127,7 +123,7 @@ namespace LuanNiao.Core
             return timestamp;
         }
 
-        protected virtual long TimeGen()
+        private static long TimeGen()
         {
             return IdWorkSystem.CurrentTimeMillis();
         }
@@ -159,18 +155,22 @@ namespace LuanNiao.Core
             });
         }
 
-        private static readonly DateTime _jan1st1970 = new DateTime
-           (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private static readonly DateTime _jan1st1970 = new(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         private static long InternalCurrentTimeMillis()
         {
             return (long)(DateTime.UtcNow - _jan1st1970).TotalMilliseconds;
         }
     }
-    public class DisposableAction : IDisposable
+    internal class DisposableAction : IDisposable
     {
         private readonly Action _action;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="action"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public DisposableAction(Action action)
         {
             if (action == null)
@@ -178,6 +178,9 @@ namespace LuanNiao.Core
             _action = action;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             _action();

@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LuanNiao.Core
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public class UnionType<T1, T2, T3> : UnionType
     {
         private readonly T1 _v1;
@@ -11,6 +13,10 @@ namespace LuanNiao.Core
         private readonly T3 _v3;
         private readonly int _whichOne;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override object Value => GetData();
 
 
@@ -30,15 +36,33 @@ namespace LuanNiao.Core
             _whichOne = 3;
         }
 
-        public static implicit operator UnionType<T1, T2, T3>(T1 t) => new UnionType<T1, T2, T3>(t);
-        public static implicit operator UnionType<T1, T2, T3>(T2 t) => new UnionType<T1, T2, T3>(t);
-        public static implicit operator UnionType<T1, T2, T3>(T3 t) => new UnionType<T1, T2, T3>(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3>(T1 t) => new(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3>(T2 t) => new(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3>(T3 t) => new(t);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public UnionType<T1, T2, T3> Switch(Action<T1> action1, Action<T2> action2, Action<T3> action3)
         {
             if (action1 == null || action2 == null || action3 == null)
             {
+#pragma warning disable CA2208 // Instantiate argument exceptions correctly
                 throw new ArgumentNullException();
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly
             }
             switch (_whichOne)
             {
@@ -59,23 +83,31 @@ namespace LuanNiao.Core
 
         private object GetData()
         {
-            switch (_whichOne)
+            return _whichOne switch
             {
-                case 1:
-                    return _v1;
-                case 2:
-                    return _v2;
-                case 3:
-                    return _v3;
-                default:
-                    throw new ArgumentException();
-            }
+                1 => _v1,
+                2 => _v2,
+                3 => _v3,
+                _ => throw new ArgumentException(),
+            };
         }
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T1 V1() => _v1;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T2 V2() => _v2;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T3 V3() => _v3;
 
     }

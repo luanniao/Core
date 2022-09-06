@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LuanNiao.Core
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public class UnionType<T1, T2, T3, T4, T5> : UnionType
     {
         private readonly T1 _v1;
@@ -15,6 +17,10 @@ namespace LuanNiao.Core
 
         private readonly int _whichOne;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override object Value => GetData();
 
         private UnionType(T1 data)
@@ -42,17 +48,43 @@ namespace LuanNiao.Core
             _v5 = data;
             _whichOne = 5;
         }
-        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T1 t) => new UnionType<T1, T2, T3, T4, T5>(t);
-        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T2 t) => new UnionType<T1, T2, T3, T4, T5>(t);
-        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T3 t) => new UnionType<T1, T2, T3, T4, T5>(t);
-        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T4 t) => new UnionType<T1, T2, T3, T4, T5>(t);
-        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T5 t) => new UnionType<T1, T2, T3, T4, T5>(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T1 t) => new(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T2 t) => new(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T3 t) => new(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T4 t) => new(t);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static implicit operator UnionType<T1, T2, T3, T4, T5>(T5 t) => new(t);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public UnionType<T1, T2, T3, T4, T5> Switch(Action<T1> action1, Action<T2> action2, Action<T3> action3, Action<T4> action4, Action<T5> action5)
         {
             if (action1 == null || action2 == null || action3 == null || action4 == null || action5 == null)
             {
+#pragma warning disable CA2208 // Instantiate argument exceptions correctly
                 throw new ArgumentNullException();
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly
             }
             switch (_whichOne)
             {
@@ -98,10 +130,30 @@ namespace LuanNiao.Core
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T1 V1() => _v1;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T2 V2() => _v2;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T3 V3() => _v3;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T4 V4() => _v4;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public T5 V5() => _v5;
 
 

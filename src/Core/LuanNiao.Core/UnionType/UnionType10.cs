@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LuanNiao.Core
 {
@@ -91,53 +89,53 @@ namespace LuanNiao.Core
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T1 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T1 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T2 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T2 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T3 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T3 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T4 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T4 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T5 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T5 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T6 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T6 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T7 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T7 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T8 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T8 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T9 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T9 t) => new(t);
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
-        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T10 t) => new UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(t);
+
+        public static implicit operator UnionType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T10 t) => new(t);
 
         /// <summary>
         /// construct method
@@ -158,7 +156,10 @@ namespace LuanNiao.Core
         {
             if (action1 == null || action2 == null || action3 == null || action4 == null || action5 == null || action6 == null || action7 == null || action8 == null || action9 == null || action10 == null)
             {
+#pragma warning disable CA2208 // Instantiate argument exceptions correctly
+
                 throw new ArgumentNullException();
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly
             }
             switch (_whichOne)
             {
@@ -200,84 +201,67 @@ namespace LuanNiao.Core
 
         private object GetData()
         {
-            switch (_whichOne)
+            return _whichOne switch
             {
-                case 1:
-                    return _v1;
-                case 2:
-                    return _v2;
-                case 3:
-                    return _v3;
-                case 4:
-                    return _v4;
-                case 5:
-                    return _v5;
-                case 6:
-                    return _v6;
-                case 7:
-                    return _v7;
-                case 8:
-                    return _v8;
-                case 9:
-                    return _v9;
-
-                case 10:
-                    return _v10;
-                default:
-                    throw new ArgumentException();
-            }
+                1 => _v1,
+                2 => _v2,
+                3 => _v3,
+                4 => _v4,
+                5 => _v5,
+                6 => _v6,
+                7 => _v7,
+                8 => _v8,
+                9 => _v9,
+                10 => _v10,
+                _ => throw new ArgumentException(),
+            };
         }
 
 
         /// <summary>
         /// helper method
-        /// </summary>
-        /// <param name="t"></param>
+        /// </summary> 
         public T1 V1() => _v1;
         /// <summary>
         /// helper method
-        /// </summary>
-        /// <param name="t"></param>
+        /// </summary> 
         public T2 V2() => _v2;
         /// <summary>
         /// helper method
-        /// </summary>
-        /// <param name="t"></param>
+        /// </summary> 
         public T3 V3() => _v3;
         /// <summary>
         /// helper method
-        /// </summary>
-        /// <param name="t"></param>
+        /// </summary> 
         public T4 V4() => _v4;
         /// <summary>
         /// helper method
-        /// </summary>
-        /// <param name="t"></param>
+        /// </summary> 
         public T5 V5() => _v5;
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
+
         public T6 V6() => _v6;
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
+
         public T7 V7() => _v7;
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
+
         public T8 V8() => _v8;
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
+
         public T9 V9() => _v9;
         /// <summary>
         /// helper method
         /// </summary>
-        /// <param name="t"></param>
+
         public T10 V10() => _v10;
 
 

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Unicode;
-using System.Threading.Tasks;
 
 namespace LuanNiao.JsonConverterExtends
 {
@@ -29,7 +24,7 @@ namespace LuanNiao.JsonConverterExtends
         public static readonly JsonSerializerOptions CamelCaseChinese = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(UnicodeRanges.All)
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(UnicodeRanges.All),
         };
         public static readonly JsonSerializerOptions CamelCaseNameCaseInsensitive = new()
         {
@@ -47,7 +42,7 @@ namespace LuanNiao.JsonConverterExtends
         {
             PropertyNameCaseInsensitive = true,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(UnicodeRanges.All)
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.Create(UnicodeRanges.All),
         };
 
     }

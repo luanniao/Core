@@ -7,7 +7,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 
-namespace TTP.Container.MQ
+namespace LuanNiao.MQ.RabbitMQ
 {
     /// <summary>
     /// MQ管理器
@@ -139,7 +139,7 @@ namespace TTP.Container.MQ
             try
             {
                 var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (object? sender, BasicDeliverEventArgs e) =>
+                consumer.Received += (sender, e) =>
                 {
                     var message = Encoding.UTF8.GetString(e.Body.Span);
 
@@ -191,7 +191,7 @@ namespace TTP.Container.MQ
             try
             {
                 var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (object? sender, BasicDeliverEventArgs e) =>
+                consumer.Received += (sender, e) =>
                 {
                     if (Interlocked.Increment(ref useTimes) > 1)
                     {
@@ -250,7 +250,7 @@ namespace TTP.Container.MQ
             try
             {
                 var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += async (object? sender, BasicDeliverEventArgs e) =>
+                consumer.Received += async (sender, e) =>
                 {
                     var message = Encoding.UTF8.GetString(e.Body.Span);
 

@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-using LuanNiao.Yggdrasil.Attributes;
+using LuanNiao.Yggdrasil.ASPNet;
+using LuanNiao.Yggdrasil.Job;
 
 namespace LuanNiao.Yggdrasil.PluginLoader
 {

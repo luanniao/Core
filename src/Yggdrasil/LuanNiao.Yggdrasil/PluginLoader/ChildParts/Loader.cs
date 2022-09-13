@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using LuanNiao.Yggdrasil.PluginLoader;
 
-
-namespace TTP.Container.PluginLoader
+namespace LuanNiao.Yggdrasil.PluginLoader
 {
     /// <summary>
     /// 管理器
     /// </summary>
-    public partial class Manager
+    public partial class PluginLoaderManager
     {
 
         private readonly List<PluginInstance> _items = new();
